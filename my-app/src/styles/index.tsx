@@ -127,6 +127,21 @@ export const myStyle = makeStyles((theme) => ({
         letterSpacing: '0em',
         textAlign: 'justify',
     },
+    notify: {
+        padding: '25% 0 25% 0',
+        textAlign: 'center',
+        '&>h5': {
+            color: 'grey',
+        },
+    },
+    warningIcon: {
+        color: '#FFC53D',
+        fontSize: '70px !important',
+    },
+    ErrorIcon: {
+        color: '#1890FF',
+        fontSize: '70px !important',
+    },
 }));
 
 export const modalStyle = makeStyles((theme) => ({

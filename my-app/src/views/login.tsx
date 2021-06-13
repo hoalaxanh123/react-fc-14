@@ -98,7 +98,7 @@ const Login: React.FC = () => {
                                 type="password"
                             />
                             <FormControlLabel
-                                control={<Checkbox value="remember" color="primary" />}
+                                control={<Checkbox value="remember" color="primary" checked={true} />}
                                 label="Remember me"
                             />
                             <ButtonCustom onClick={handleLogin} label="Sign In" />

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Container } from '@material-ui/core';
 import withMyTheme from '../HOC';
-import { PAGE_TITLES } from '../constants';
 
 const Quiz: React.FC = () => {
     return (
@@ -11,4 +10,4 @@ const Quiz: React.FC = () => {
     );
 };
 
-export default withMyTheme(Quiz, PAGE_TITLES.quiz);
+export default withMyTheme(Quiz);
