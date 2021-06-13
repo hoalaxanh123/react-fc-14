@@ -13,7 +13,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import useSnackBar from '../hook';
-import { LINK_URL, LOGGED, ROLE, USERNAME } from '../constants';
+import { LINK_URL, LOGGED, PAGE_TITLES, ROLE, USERNAME } from '../constants';
 import withMyTheme from '../HOC';
 import Paper from '@material-ui/core/Paper';
 import { Container } from '@material-ui/core';
@@ -123,4 +123,4 @@ const Login: React.FC = () => {
     );
 };
 
-export default withMyTheme(Login);
+export default withMyTheme(Login, PAGE_TITLES.login);

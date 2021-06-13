@@ -1,9 +1,9 @@
 import React from 'react';
 
 import { Container } from '@material-ui/core';
-import { ROLE } from '../../constants';
+import { PAGE_TITLES, ROLE } from '../../constants';
 import withMyTheme from '../../HOC';
-import Forbidden from '../forbidden';
+import Forbidden from '../403';
 
 const Management: React.FC = () => {
     const role = localStorage.getItem(ROLE);
@@ -15,4 +15,4 @@ const Management: React.FC = () => {
     return role === 'admin' ? managementComponent : <Forbidden />;
 };
 
-export default withMyTheme(Management);
+export default withMyTheme(Management, PAGE_TITLES.management);

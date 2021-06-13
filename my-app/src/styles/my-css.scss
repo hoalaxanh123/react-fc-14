@@ -1,12 +1,18 @@
 html {
     scroll-behavior: smooth;
 }
+
+body {
+    font-family: 'Baloo Tammudu 2', cursive;
+    font-family: 'Open Sans', sans-serif;
+}
 .my-main-contain {
-    padding: 10px 0 50px 0;
-    animation-name: example;
+    // border: 1px solid black;
+    padding: 5px 0 10px 0;
+    animation-name: bot-to-top;
     animation-duration: 1s;
 }
-@keyframes example {
+@keyframes bot-to-top {
     from {
         margin-top: 25px;
         opacity: 0.5;
@@ -15,4 +21,21 @@ html {
         margin-top: 0%;
         opacity: 1;
     }
+}
+
+.button-link {
+    padding: 10px 20px 10px 20px;
+    color: #fff;
+    background-color: #1797f2;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.75;
+    border-radius: 4px;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+.button-link:hover {
+    transition: 0.75s;
+    font-weight: bold;
 }

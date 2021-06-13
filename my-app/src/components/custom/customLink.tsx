@@ -3,6 +3,7 @@
 import React from 'react';
 import { myStyle } from '../../styles';
 import { Link, useRouteMatch } from 'react-router-dom';
+import { getIconByLink } from './icons';
 interface CustomLinkProp {
     to: string;
     activeOnlyWhenExact: boolean;
@@ -18,11 +19,15 @@ const CustomNavLink: React.FC<CustomLinkProp> = (props: CustomLinkProp) => {
         path: to,
         exact: activeOnlyWhenExact,
     });
+    const icon = getIconByLink(to, match ? true : false);
 
     return (
         <span className={match ? classes.menuActive : ''}>
             <Link to={{ pathname: to, state: { from: props?.location?.pathname } }} className={classes.link}>
-                {label}
+                <span>
+                    {icon}
+                    <label style={{ cursor: 'pointer', display: 'table-caption', width: 'max-content' }}>{label}</label>
+                </span>
             </Link>
         </span>
     );

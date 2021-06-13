@@ -7,13 +7,18 @@ import MyMenu from '../components/common/menu';
 import { MESSAGE_BAR_DURATION } from '../constants';
 import '../styles/my-css.scss';
 import { Container } from '@material-ui/core';
+import Head from '../components/common/head';
 
-const withMyTheme = (WrappedComponent: React.ComponentType) => {
+const withMyTheme = (WrappedComponent: React.ComponentType, title = '') => {
     // eslint-disable-next-line react/display-name,@typescript-eslint/explicit-module-boundary-types
     return function () {
         return (
             <>
                 <CssBaseline />
+                {/* Head */}
+                <Head title={title || ''} />
+                {/* End Head */}
+
                 {/* Menu */}
                 <MyMenu />
                 {/* End Menu */}

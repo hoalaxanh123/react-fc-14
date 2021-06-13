@@ -47,13 +47,14 @@ export const myStyle = makeStyles((theme) => ({
         margin: theme.spacing(1, 1.5),
         textDecoration: 'none',
         color: 'rgba(0, 0, 0, 0.87)',
-        fontSize: '0.875rem',
+        // fontSize: '0.875rem',
         lineHeight: 1.75,
         letterSpacing: '0.02857em',
         textTransform: 'uppercase',
         transition: '0.2s',
         '&:hover': {
             fontWeight: 'bold',
+            textShadow: '4px 4px 4px #aaa',
         },
         '&:active': {
             color: 'red',
@@ -79,9 +80,11 @@ export const myStyle = makeStyles((theme) => ({
         fontWeight: 500,
         lineHeight: 1.6,
         letterSpacing: '0.0075em',
+        textShadow: '4px 4px 4px #aaa',
     },
     menuActive: {
         fontWeight: 'bold',
+        textShadow: '4px 4px 4px #aaa',
     },
     companyName: {
         fontWeight: 'bold',
@@ -110,12 +113,9 @@ export const myStyle = makeStyles((theme) => ({
         width: '90%',
         textAlign: 'center',
         paddingBottom: '100px',
-        '&>h1': {
-            color: 'red',
-            fontSize: '175px',
-        },
+
         '&>h2': {
-            marginTop: '-100px',
+            marginTop: '50px',
         },
     },
     note: {

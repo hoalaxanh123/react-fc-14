@@ -4,7 +4,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { Card, CardActions, CardContent, CardHeader, Container, Grid } from '@material-ui/core';
 import StarIcon from '@material-ui/icons/StarBorder';
-import { TIERS } from '../constants';
+import { PAGE_TITLES, TIERS } from '../constants';
 import { myStyle } from '../styles';
 import withMyTheme from '../HOC';
 
@@ -67,4 +67,4 @@ const Homepage: React.FC = () => {
     );
 };
 
-export default withMyTheme(Homepage);
+export default withMyTheme(Homepage, PAGE_TITLES.home);

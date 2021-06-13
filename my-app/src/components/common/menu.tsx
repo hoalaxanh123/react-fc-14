@@ -32,13 +32,13 @@ const MyMenu: React.FC = () => {
                 <Toolbar className={classes.toolbar}>
                     <Typography variant="h6" color="inherit" noWrap className={classes.toolbarTitle}>
                         <Link to={LINK_URL.homepage} className={classes.menuTittle}>
-                            TMA Solution
+                            Quiz Challenge
                         </Link>
                     </Typography>
                     <nav>
                         <CustomNavLink to={LINK_URL.homepage} label={'Home'} activeOnlyWhenExact={true} />
-                        <CustomNavLink to={LINK_URL.about} label="About" activeOnlyWhenExact={false} />
-                        <CustomNavLink to={LINK_URL.contact} label="Contact" activeOnlyWhenExact={false} />
+                        <CustomNavLink to={LINK_URL.quiz} label="Quiz challenge" activeOnlyWhenExact={false} />
+                        <CustomNavLink to={LINK_URL.result} label="Report" activeOnlyWhenExact={false} />
                         {LinkToManagement}
                     </nav>
                     {LoginOrLogoutComponent}

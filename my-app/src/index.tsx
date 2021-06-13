@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import { LINK_URL } from './constants';
 import Homepage from './views/home';
-import About from './views/about';
-import Contact from './views/contact';
+import Quiz from './views/quiz';
+import ResultPage from './views/report';
 import NotFound from './views/404';
 import Login from './views/login';
 import Management from './views/admin';
@@ -17,14 +17,13 @@ ReactDOM.render(
                 <Homepage />
             </Route>
 
-            <Route path={LINK_URL.about} exact>
-                <About />
-            </Route>
+            <PrivateRoute path={LINK_URL.quiz} exact>
+                <Quiz />
+            </PrivateRoute>
 
-            <Route path={LINK_URL.contact} exact>
-                <Contact />
-            </Route>
-
+            <PrivateRoute path={LINK_URL.result} exact>
+                <ResultPage />
+            </PrivateRoute>
             <PrivateRoute path={LINK_URL.management} exact>
                 <Management />
             </PrivateRoute>
