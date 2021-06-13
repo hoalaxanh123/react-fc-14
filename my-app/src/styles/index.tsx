@@ -142,6 +142,55 @@ export const myStyle = makeStyles((theme) => ({
         color: '#1890FF',
         fontSize: '70px !important',
     },
+    formControl: {
+        margin: theme.spacing(3),
+        width: '100%',
+    },
+    formGroup: {
+        marginLeft: '10px',
+    },
+    FormControlLabel: {
+        background: 'aliceblue',
+        border: '1px solid #84c5fe',
+        borderRadius: '5px',
+        padding: '5px 15px',
+        fontSize: '17px',
+        marginBottom: '15px',
+        cursor: 'pointer',
+        transition: 'all 0.3s ease',
+        display: 'flex',
+        alignItems: 'center',
+        '&:hover': {
+            color: '#004085',
+            background: '#cce5ff',
+            border: '1px solid #b8daff',
+        },
+    },
+    quizBox: {
+        margin: '10% auto',
+        padding: '30px',
+        width: '70%',
+        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+    },
+    questionText: {
+        fontSize: '25px',
+        fontWeight: 600,
+    },
+    buttonNext: {
+        height: '40px',
+        padding: '0 13px',
+        fontSize: '18px',
+        fontWeight: 400,
+        cursor: 'pointer',
+        outline: 'none',
+        color: '#fff',
+        borderRadius: '5px',
+        background: '#007bff',
+        border: '1px solid #007bff',
+        lineHeight: '10px',
+        transform: 'scale(0.95)',
+        transition: 'all 0.3s ease',
+    },
 }));
 
 export const modalStyle = makeStyles((theme) => ({

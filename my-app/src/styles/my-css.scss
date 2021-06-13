@@ -1,11 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
-body {
-    font-family: 'Baloo Tammudu 2', cursive;
-    font-family: 'Open Sans', sans-serif;
-}
 .my-main-contain {
     // border: 1px solid black;
     padding: 5px 0 10px 0;
@@ -38,4 +40,45 @@ body {
 .button-link:hover {
     transition: 0.75s;
     font-weight: bold;
+}
+
+.timer {
+    color: #004085;
+    background: #cce5ff;
+    border: 1px solid #b8daff;
+    height: 45px;
+    padding: 0 8px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 145px;
+    float: right;
+    margin-top: -10px;
+}
+
+.timer .time_left_txt {
+    font-weight: 400;
+    font-size: 17px;
+    user-select: none;
+}
+
+.timer .timer_sec {
+    font-size: 18px;
+    font-weight: 500;
+    height: 30px;
+    width: 45px;
+    color: #fff;
+    border-radius: 5px;
+    line-height: 30px;
+    text-align: center;
+    background: #343a40;
+    border: 1px solid #343a40;
+    user-select: none;
+}
+.overral {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: #004085;
 }
