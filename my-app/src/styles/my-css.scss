@@ -1,0 +1,18 @@
+html {
+    scroll-behavior: smooth;
+}
+.my-main-contain {
+    padding: 10px 0 50px 0;
+    animation-name: example;
+    animation-duration: 1s;
+}
+@keyframes example {
+    from {
+        margin-top: 25px;
+        opacity: 0.5;
+    }
+    to {
+        margin-top: 0%;
+        opacity: 1;
+    }
+}

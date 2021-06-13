@@ -5,6 +5,8 @@ import { CssBaseline } from '@material-ui/core';
 import { Toaster } from 'react-hot-toast';
 import MyMenu from '../components/common/menu';
 import { MESSAGE_BAR_DURATION } from '../constants';
+import '../styles/my-css.scss';
+import { Container } from '@material-ui/core';
 
 const withMyTheme = (WrappedComponent: React.ComponentType) => {
     // eslint-disable-next-line react/display-name,@typescript-eslint/explicit-module-boundary-types
@@ -17,7 +19,9 @@ const withMyTheme = (WrappedComponent: React.ComponentType) => {
                 {/* End Menu */}
 
                 {/* Content */}
-                <WrappedComponent />
+                <Container maxWidth="md" className={'my-main-contain'}>
+                    <WrappedComponent />
+                </Container>
                 {/* End Content */}
 
                 {/* Copyright */}

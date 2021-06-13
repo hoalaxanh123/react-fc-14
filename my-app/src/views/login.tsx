@@ -5,8 +5,9 @@ import Typography from '@material-ui/core/Typography';
 import { myStyle } from '../styles';
 import { useState } from 'react';
 
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import ButtonCustom from '../components/functions/button';
+import TextFieldCustom from '../components/functions/textField';
+
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
@@ -34,8 +35,6 @@ const Login: React.FC = () => {
     if (typeof previousURL !== 'string') {
         defaultURL = previousURL?.pathname || defaultURL;
     }
-    console.log('previousURL :>> ', previousURL);
-    console.log('defaultURL :>> ', defaultURL);
 
     const changeUserName = (e: { target: { value: React.SetStateAction<string> } }) => {
         setUsername(e.target.value);
@@ -86,21 +85,13 @@ const Login: React.FC = () => {
 
                         {/* Form Login */}
                         <form className={classes.form} noValidate>
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
+                            <TextFieldCustom
                                 label="Username (admin/test)"
                                 value={username}
                                 onChange={changeUserName}
                                 autoFocus
                             />
-                            <TextField
-                                variant="outlined"
-                                margin="normal"
-                                required
-                                fullWidth
+                            <TextFieldCustom
                                 label="Password (123456)"
                                 onChange={changePassword}
                                 value={password}
@@ -110,16 +101,7 @@ const Login: React.FC = () => {
                                 control={<Checkbox value="remember" color="primary" />}
                                 label="Remember me"
                             />
-                            <Button
-                                type="submit"
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                className={classes.submit}
-                                onClick={handleLogin}
-                            >
-                                Sign In
-                            </Button>
+                            <ButtonCustom onClick={handleLogin} label="Sign In" />
                             <Grid container>
                                 <Grid item xs>
                                     <Link href="#" variant="body2">
