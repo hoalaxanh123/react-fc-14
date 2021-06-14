@@ -20,7 +20,7 @@ export const PAGE_TITLES = {
     403: getTitle('Forbidden'),
     404: getTitle('Not found'),
 };
-export const MESSAGE_BAR_DURATION = 3000;
+export const MESSAGE_BAR_DURATION = 3500;
 
 export const LINK_URL = {
     homepage: '/',

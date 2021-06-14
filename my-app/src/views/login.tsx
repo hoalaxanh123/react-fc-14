@@ -22,6 +22,7 @@ import { Redirect, useHistory } from 'react-router';
 const Login: React.FC = () => {
     const classes = myStyle();
     const logged = localStorage.getItem(LOGGED);
+
     const [username, setUsername] = useState('admin');
     const [password, setPassword] = useState('123456');
     const { showSnackbar, hideSnackBar } = useSnackBar();
@@ -30,6 +31,10 @@ const Login: React.FC = () => {
     const previousURL = history?.location?.state?.from;
 
     let defaultURL = LINK_URL.homepage;
+
+    if (logged) {
+        showSnackbar('Oh! you were here, my friend', 'error');
+    }
 
     // Handle private route
     if (typeof previousURL !== 'string') {
@@ -55,7 +60,7 @@ const Login: React.FC = () => {
         setTimeout(() => {
             hideSnackBar(snackBarLoadingID);
             if (['admin', 'test'].includes(username) && password === '123456') {
-                showSnackbar('Login success', 'success');
+                showSnackbar(`Welcome back, ${username}`, 'success');
                 localStorage.setItem(LOGGED, 'true');
                 localStorage.setItem(USERNAME, username);
                 localStorage.setItem(ROLE, username === 'admin' ? 'admin' : 'user');
