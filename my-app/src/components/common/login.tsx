@@ -35,7 +35,6 @@ const LoginComponent: React.FC = () => {
 
         // Fake calling API
         setTimeout(() => {
-            console.log('password :>> ', password);
             hideSnackBar(snackBarLoadingID);
             if (['admin', 'test'].includes(username) && password === '123456') {
                 showSnackbar('Login success', 'success');

@@ -178,6 +178,8 @@ export const myStyle = makeStyles((theme) => ({
     questionText: {
         fontSize: '25px',
         fontWeight: 600,
+        maxWidth: '10px',
+        wordBreak: 'break-all',
     },
     buttonNext: {
         height: '40px',
@@ -193,6 +195,10 @@ export const myStyle = makeStyles((theme) => ({
         lineHeight: '10px',
         transform: 'scale(0.95)',
         transition: 'all 0.3s ease',
+    },
+    center: {
+        margin: '0 auto',
+        textAlign: 'center',
     },
 }));
 

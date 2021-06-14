@@ -3,7 +3,6 @@ import TextField, { TextFieldProps } from '@material-ui/core/TextField';
 
 const TextFieldCustom: React.FC<TextFieldProps> = (props: TextFieldProps) => {
     const { label, value, type, required, onChange, ...restProps } = props;
-    console.log('restProps :>> ', restProps);
     return (
         <TextField
             {...restProps}

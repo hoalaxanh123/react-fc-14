@@ -1,115 +1,137 @@
 import React from 'react';
 import withMyTheme from '../HOC';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
+
 import { myStyle } from '../styles';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-
-import { withStyles } from '@material-ui/core/styles';
+import DisplayQuestion from '../components/quiz/displayQuestion';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
+import { getCurrentIndexQuestion, setIndexQuestion } from '../utils';
+import { API_URLS, BTN_NEXT_LABEL, BTN_PREVIOUS_LABEL } from '../constants';
+import useSnackBar from '../hook';
 
 const Quiz: React.FC = () => {
+    // Variables
     const classes = myStyle();
-    const [state, setState] = React.useState({
-        gilad: true,
-        jason: false,
-        antoine: false,
-    });
-    const handleChange = (event) => {
-        setState({ ...state, [event.target.name]: event.target.checked });
+    const buttons = [];
+    const [quesIndexState, setQuestIndexState] = useState(getCurrentIndexQuestion());
+    const [isFetching, setIsFetching] = useState(false);
+    const [questionsData, setQuestionsData] = useState([]);
+    const { showSnackbar } = useSnackBar();
+
+    const commonCondition = questionsData.length === 0 || isFetching;
+    const isDisablePreviousButton = commonCondition || quesIndexState === 0;
+    const isDisableNextButton = commonCondition || quesIndexState + 1 === questionsData.length;
+
+    // Hooks
+    useEffect(() => {
+        const fetchData = async () => {
+            setIsFetching(true);
+            await axios(API_URLS.fetchQuestion)
+                .then((res) => {
+                    setQuestionsData(res.data.result);
+                })
+                .catch((error) => {
+                    // TODO: Change to use snackBar
+                    console.log('error :>> ', error);
+                    showSnackbar(`Can't fetch question: ${error}`, 'error');
+                })
+                .finally(() => {
+                    setIsFetching(false);
+                });
+        };
+
+        fetchData();
+    }, []);
+
+    // Functions
+    const handleChangeQuestionIndex = (e) => {
+        const index = Number(e.target.innerText);
+        if (index) {
+            setIndexQuesCombo(index - 1);
+        }
+    };
+    const setIndexQuesCombo = (index) => {
+        setIndexQuestion(index);
+        setQuestIndexState(index);
+    };
+    const handleNavButton = (e) => {
+        switch (e.target.innerText.toUpperCase()) {
+            case BTN_PREVIOUS_LABEL.toUpperCase():
+                setIndexQuesCombo(quesIndexState - 1);
+                break;
+            case BTN_NEXT_LABEL.toUpperCase():
+                setIndexQuesCombo(quesIndexState + 1);
+                break;
+            default:
+                break;
+        }
     };
 
-    const { gilad, jason, antoine } = state;
-    const buttons = [];
-    for (let index = 1; index <= 10; index++) {
+    // Render
+    const quizBoxTitle =
+        questionsData?.length > 0
+            ? `Question ${quesIndexState + 1} of ${questionsData.length}`
+            : 'Well, no questions for you :((';
+    const renderContent = isFetching ? (
+        <h1>Getting questions.....</h1>
+    ) : (
+        <DisplayQuestion
+            title={quizBoxTitle}
+            question={questionsData[quesIndexState]?.question}
+            choices={questionsData[quesIndexState]?.choices || []}
+        />
+    );
+    for (let index = 1; index <= questionsData.length; index++) {
         buttons.push(
             <Grid key={index} item>
-                <Button variant="contained">{index}</Button>
+                <Button
+                    variant="contained"
+                    onClick={handleChangeQuestionIndex}
+                    disabled={isFetching || index === quesIndexState + 1}
+                >
+                    {index}
+                </Button>
             </Grid>,
         );
     }
-    const ColorButton = withStyles(() => ({
-        root: {
-            height: '40px',
-            padding: '0 13px',
-            fontSize: '18px',
-            fontWeight: 400,
-            cursor: 'pointer',
-            outline: 'none',
-            color: '#fff',
-            borderRadius: '5px',
-            background: '#007bff',
-            border: '1px solid #007bff',
-            lineHeight: '10px',
-            transform: 'scale(0.95)',
-            transition: 'all 0.3s ease',
-            right: '0',
-            '&:hover': {
-                backgroundColor: '#0263ca',
-            },
-        },
-    }))(Button);
+
     return (
         <>
-            <div className="overral">
-                <div className={classes.quizBox}>
-                    <div>
-                        <span className={classes.questionText}>Question 1</span>
-                        <div className="timer">
-                            <div className="time_left_txt">Time Off</div>
-                            <div className="timer_sec">00</div>
-                        </div>
-                    </div>
-                    <hr />
-                    <FormControl component="fieldset" className={classes.formControl}>
-                        <h2>Who are you?</h2>
-                        <FormGroup className={classes.formGroup}>
-                            <FormControlLabel
-                                control={
-                                    <Checkbox color="primary" checked={gilad} onChange={handleChange} name="gilad" />
-                                }
-                                label="Ta"
-                                className={classes.FormControlLabel}
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox color="primary" checked={jason} onChange={handleChange} name="jason" />
-                                }
-                                label="Me"
-                                className={classes.FormControlLabel}
-                            />
-                            <FormControlLabel
-                                control={
-                                    <Checkbox
-                                        color="primary"
-                                        checked={antoine}
-                                        onChange={handleChange}
-                                        name="antoine"
-                                    />
-                                }
-                                label="Tớ"
-                                className={classes.FormControlLabel}
-                            />
-                        </FormGroup>
-                        <FormHelperText></FormHelperText>
-                    </FormControl>
-                    <br />
-                    <br />
-                    <div>
-                        <ColorButton variant="contained" className={classes.buttonNext}>
-                            Next
-                        </ColorButton>
-                    </div>
-                    <hr />
-                    <Grid container spacing={2} style={{ margin: '0 auto' }}>
-                        {buttons}
-                    </Grid>
-                    <hr />
+            {/* <div className="overral"> */}
+            <div className={classes.quizBox}>
+                {renderContent}
+                <br />
+                <br />
+                <div>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.buttonNext}
+                        disabled={isDisablePreviousButton}
+                        onClick={handleNavButton}
+                    >
+                        {BTN_PREVIOUS_LABEL}
+                    </Button>
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        className={classes.buttonNext}
+                        disabled={isDisableNextButton}
+                        onClick={handleNavButton}
+                    >
+                        {BTN_NEXT_LABEL}
+                    </Button>
                 </div>
+                <hr />
+                <Grid container spacing={2} style={{ margin: '0 auto' }}>
+                    {buttons}
+                </Grid>
+                <hr />
             </div>
+            {/* </div> */}
         </>
     );
 };
