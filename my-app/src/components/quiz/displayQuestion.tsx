@@ -4,19 +4,26 @@ import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { myStyle } from '../../styles';
+import { useState } from 'react';
+import { getUserAnswers, setUserAnswer } from '../../utils';
 
 interface DisplayQuestion {
     title: string;
     question: string;
     choices: Array<string>;
+    id: number;
 }
 
 const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
     const classes = myStyle();
-    const { title, question, choices } = props;
+    const { id, title, question, choices } = props;
+    const [answerState, setAnswerState] = useState(getUserAnswers());
+
     const handleChange = (event) => {
         // setState({ ...state, [event.target.name]: event.target.checked });
         console.log('event.target :>> ', event.target);
+        const answers = setUserAnswer(id, event.target.name, event.target.checked);
+        setAnswerState(answers);
     };
     if (choices.length === 0) {
         return (
@@ -27,14 +34,17 @@ const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
         );
     }
 
-    const renderChoices = Object.keys(choices).map((key) => (
-        <FormControlLabel
-            key={key}
-            control={<Checkbox color="primary" checked={false} onChange={handleChange} name={key} />}
-            label={choices[key]}
-            className={classes.FormControlLabel}
-        />
-    ));
+    const renderChoices = Object.keys(choices).map((key) => {
+        const checked = id in answerState && answerState[id].includes(key);
+        return (
+            <FormControlLabel
+                key={key}
+                control={<Checkbox color="primary" checked={checked} onChange={handleChange} name={key} />}
+                label={choices[key]}
+                className={classes.FormControlLabel}
+            />
+        );
+    });
 
     return (
         <div>

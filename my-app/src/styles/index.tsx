@@ -181,24 +181,21 @@ export const myStyle = makeStyles((theme) => ({
         maxWidth: '10px',
         wordBreak: 'break-all',
     },
-    buttonNext: {
-        height: '40px',
-        padding: '0 13px',
-        fontSize: '18px',
-        fontWeight: 400,
-        cursor: 'pointer',
-        outline: 'none',
-        color: '#fff',
-        borderRadius: '5px',
-        background: '#007bff',
-        border: '1px solid #007bff',
-        lineHeight: '10px',
+    buttonNav: {
         transform: 'scale(0.95)',
         transition: 'all 0.3s ease',
     },
     center: {
         margin: '0 auto',
         textAlign: 'center',
+    },
+    gridCenter: {
+        justifyContent: 'center',
+    },
+    gridBetween: {
+        justifyContent: 'space-between',
+        marginTop: '-40px !important',
+        paddingBottom: '20px',
     },
 }));
 

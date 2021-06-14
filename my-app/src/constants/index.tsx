@@ -1,15 +1,25 @@
+// LocalStorage key
 export const LOGGED = 'logged';
 export const USERNAME = 'usr';
 export const ROLE = 'role';
-export const API_URLS = {
-    fetchQuestion: 'https://react14-contest-easy-quiz-app.herokuapp.com/quiz',
-    fetchAnswer: 'https://react14-contest-easy-quiz-app.herokuapp.com/quiz/answer',
-};
 export const ROLE_TYPE = {
     ADMIN: 'admin',
     TESTER: 'tester',
     MEMBER: 'member',
 };
+export const ANSWERS = 'answers';
+export const ANSWERS_ACTIONS = {
+    CHECK: 'check',
+    UNCHECK: 'uncheck',
+};
+
+// API
+export const API_URLS = {
+    fetchQuestion: 'https://react14-contest-easy-quiz-app.herokuapp.com/quiz',
+    fetchAnswer: 'https://react14-contest-easy-quiz-app.herokuapp.com/quiz/answer',
+};
+
+// Configs
 export const SELECTED_INDEX_QUESTION = 'question_index';
 export const PAGE_TITLE = 'Quiz App';
 export const SEPARATOR = ' - ';
@@ -36,5 +46,5 @@ export const LINK_URL = {
     management: '/management',
 };
 
-export const BTN_PREVIOUS_LABEL = 'Previous';
+export const BTN_PREVIOUS_LABEL = 'Prev';
 export const BTN_NEXT_LABEL = 'Next';

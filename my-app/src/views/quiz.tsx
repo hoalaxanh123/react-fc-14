@@ -11,7 +11,8 @@ import { useState } from 'react';
 import { getCurrentIndexQuestion, setIndexQuestion } from '../utils';
 import { API_URLS, BTN_NEXT_LABEL, BTN_PREVIOUS_LABEL } from '../constants';
 import useSnackBar from '../hook';
-
+import ArrowLeftIcon from '@material-ui/icons/ArrowLeft';
+import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 const Quiz: React.FC = () => {
     // Variables
     const classes = myStyle();
@@ -48,7 +49,9 @@ const Quiz: React.FC = () => {
 
     // Functions
     const handleChangeQuestionIndex = (e) => {
-        const index = Number(e.target.innerText);
+        const text = e.target.innerText;
+        if (!text) return;
+        const index = Number(text);
         if (index) {
             setIndexQuesCombo(index - 1);
         }
@@ -57,12 +60,12 @@ const Quiz: React.FC = () => {
         setIndexQuestion(index);
         setQuestIndexState(index);
     };
-    const handleNavButton = (e) => {
-        switch (e.target.innerText.toUpperCase()) {
-            case BTN_PREVIOUS_LABEL.toUpperCase():
+    const handleNavButton = (action) => {
+        switch (action) {
+            case BTN_PREVIOUS_LABEL:
                 setIndexQuesCombo(quesIndexState - 1);
                 break;
-            case BTN_NEXT_LABEL.toUpperCase():
+            case BTN_NEXT_LABEL:
                 setIndexQuesCombo(quesIndexState + 1);
                 break;
             default:
@@ -71,10 +74,7 @@ const Quiz: React.FC = () => {
     };
 
     // Render
-    const quizBoxTitle =
-        questionsData?.length > 0
-            ? `Question ${quesIndexState + 1} of ${questionsData.length}`
-            : 'Well, no questions for you :((';
+    const quizBoxTitle = questionsData?.length > 0 ? `Question ${quesIndexState + 1} of ${questionsData.length}` : '';
     const renderContent = isFetching ? (
         <h1>Getting questions.....</h1>
     ) : (
@@ -82,6 +82,7 @@ const Quiz: React.FC = () => {
             title={quizBoxTitle}
             question={questionsData[quesIndexState]?.question}
             choices={questionsData[quesIndexState]?.choices || []}
+            id={questionsData[quesIndexState]?.id || null}
         />
     );
     for (let index = 1; index <= questionsData.length; index++) {
@@ -105,28 +106,31 @@ const Quiz: React.FC = () => {
                 {renderContent}
                 <br />
                 <br />
-                <div>
+
+                <Grid container spacing={2} className={classes.gridBetween}>
                     <Button
                         variant="contained"
                         color="primary"
-                        className={classes.buttonNext}
+                        className={classes.buttonNav}
                         disabled={isDisablePreviousButton}
-                        onClick={handleNavButton}
+                        startIcon={<ArrowLeftIcon />}
+                        onClick={() => handleNavButton(BTN_PREVIOUS_LABEL)}
                     >
                         {BTN_PREVIOUS_LABEL}
                     </Button>
                     <Button
                         variant="contained"
                         color="primary"
-                        className={classes.buttonNext}
+                        className={classes.buttonNav}
                         disabled={isDisableNextButton}
-                        onClick={handleNavButton}
+                        endIcon={<ArrowRightIcon />}
+                        onClick={() => handleNavButton(BTN_NEXT_LABEL)}
                     >
                         {BTN_NEXT_LABEL}
                     </Button>
-                </div>
+                </Grid>
                 <hr />
-                <Grid container spacing={2} style={{ margin: '0 auto' }}>
+                <Grid container spacing={2} className={classes.gridCenter}>
                     {buttons}
                 </Grid>
                 <hr />
