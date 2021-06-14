@@ -160,6 +160,7 @@ export const myStyle = makeStyles((theme) => ({
         transition: 'all 0.3s ease',
         display: 'flex',
         alignItems: 'center',
+        wordBreak: 'break-all',
         '&:hover': {
             color: '#004085',
             background: '#cce5ff',
@@ -171,6 +172,8 @@ export const myStyle = makeStyles((theme) => ({
         padding: '30px',
         width: '70%',
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+        zIndex: 9999999,
+        background: '#fff',
     },
     questionText: {
         fontSize: '25px',

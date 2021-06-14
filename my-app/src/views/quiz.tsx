@@ -7,9 +7,9 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import Checkbox from '@material-ui/core/Checkbox';
 import { myStyle } from '../styles';
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
+import Grid from '@material-ui/core/Grid';
+
 import { withStyles } from '@material-ui/core/styles';
-import { green, purple } from '@material-ui/core/colors';
 
 const Quiz: React.FC = () => {
     const classes = myStyle();
@@ -26,9 +26,9 @@ const Quiz: React.FC = () => {
     const buttons = [];
     for (let index = 1; index <= 10; index++) {
         buttons.push(
-            <Button variant="contained" style={{ maxWidth: '5px' }}>
-                {index}
-            </Button>,
+            <Grid key={index} item>
+                <Button variant="contained">{index}</Button>
+            </Grid>,
         );
     }
     const ColorButton = withStyles(() => ({
@@ -46,6 +46,7 @@ const Quiz: React.FC = () => {
             lineHeight: '10px',
             transform: 'scale(0.95)',
             transition: 'all 0.3s ease',
+            right: '0',
             '&:hover': {
                 backgroundColor: '#0263ca',
             },
@@ -53,55 +54,61 @@ const Quiz: React.FC = () => {
     }))(Button);
     return (
         <>
-            <div className={classes.quizBox}>
-                <div>
-                    <span className={classes.questionText}>Question 1</span>
-                    <div className="timer">
-                        <div className="time_left_txt">Time Off</div>
-                        <div className="timer_sec">00</div>
+            <div className="overral">
+                <div className={classes.quizBox}>
+                    <div>
+                        <span className={classes.questionText}>Question 1</span>
+                        <div className="timer">
+                            <div className="time_left_txt">Time Off</div>
+                            <div className="timer_sec">00</div>
+                        </div>
                     </div>
+                    <hr />
+                    <FormControl component="fieldset" className={classes.formControl}>
+                        <h2>Who are you?</h2>
+                        <FormGroup className={classes.formGroup}>
+                            <FormControlLabel
+                                control={
+                                    <Checkbox color="primary" checked={gilad} onChange={handleChange} name="gilad" />
+                                }
+                                label="Ta"
+                                className={classes.FormControlLabel}
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox color="primary" checked={jason} onChange={handleChange} name="jason" />
+                                }
+                                label="Me"
+                                className={classes.FormControlLabel}
+                            />
+                            <FormControlLabel
+                                control={
+                                    <Checkbox
+                                        color="primary"
+                                        checked={antoine}
+                                        onChange={handleChange}
+                                        name="antoine"
+                                    />
+                                }
+                                label="Tớ"
+                                className={classes.FormControlLabel}
+                            />
+                        </FormGroup>
+                        <FormHelperText></FormHelperText>
+                    </FormControl>
+                    <br />
+                    <br />
+                    <div>
+                        <ColorButton variant="contained" className={classes.buttonNext}>
+                            Next
+                        </ColorButton>
+                    </div>
+                    <hr />
+                    <Grid container spacing={2} style={{ margin: '0 auto' }}>
+                        {buttons}
+                    </Grid>
+                    <hr />
                 </div>
-                <hr />
-                <FormControl component="fieldset" className={classes.formControl}>
-                    <h2>Who are you?</h2>
-                    <FormGroup className={classes.formGroup}>
-                        <FormControlLabel
-                            control={<Checkbox color="primary" checked={gilad} onChange={handleChange} name="gilad" />}
-                            label="Tao"
-                            className={classes.FormControlLabel}
-                        />
-                        <FormControlLabel
-                            control={<Checkbox color="primary" checked={jason} onChange={handleChange} name="jason" />}
-                            label="Me"
-                            className={classes.FormControlLabel}
-                        />
-                        <FormControlLabel
-                            control={
-                                <Checkbox color="primary" checked={antoine} onChange={handleChange} name="antoine" />
-                            }
-                            label="Tớ"
-                            className={classes.FormControlLabel}
-                        />
-                    </FormGroup>
-                    <FormHelperText></FormHelperText>
-                </FormControl>
-                <br />
-                <br />
-                <div>
-                    <ColorButton variant="contained" className={classes.buttonNext}>
-                        Next
-                    </ColorButton>
-                </div>
-                <hr />
-                <ButtonGroup
-                    variant="text"
-                    color="primary"
-                    aria-label="text primary button group"
-                    style={{ width: '100%' }}
-                >
-                    {buttons}
-                </ButtonGroup>
-                <hr />
             </div>
         </>
     );
