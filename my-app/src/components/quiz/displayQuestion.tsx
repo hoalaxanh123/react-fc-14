@@ -20,8 +20,6 @@ const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
     const [answerState, setAnswerState] = useState(getUserAnswers());
 
     const handleChange = (event) => {
-        // setState({ ...state, [event.target.name]: event.target.checked });
-        console.log('event.target :>> ', event.target);
         const answers = setUserAnswer(id, event.target.name, event.target.checked);
         setAnswerState(answers);
     };
@@ -29,7 +27,7 @@ const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
         return (
             <div className={classes.center}>
                 <img src="cry.png" alt="cry" width={'80%'} />
-                <h2>Sorry, we don&apost have questions for you</h2>
+                <h2>Sorry, we don&apos;t have any questions for you</h2>
             </div>
         );
     }

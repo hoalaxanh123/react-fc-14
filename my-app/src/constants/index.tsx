@@ -48,3 +48,4 @@ export const LINK_URL = {
 
 export const BTN_PREVIOUS_LABEL = 'Prev';
 export const BTN_NEXT_LABEL = 'Next';
+export const BTN_SUBMIT_LABEL = 'Submit';

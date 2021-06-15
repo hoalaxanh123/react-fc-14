@@ -40,3 +40,31 @@ export const getUserAnswers = (): any => {
     }
     return JSON.parse(answers);
 };
+
+export const isEligibleForSubmit = (questionFetchedLength: number): boolean => {
+    const userAnswers = getUserAnswers();
+    if (Object.keys(userAnswers).length !== questionFetchedLength) {
+        return false;
+    }
+    for (const key of Object.keys(userAnswers)) {
+        if (userAnswers[key].length === 0) {
+            return false;
+        }
+    }
+
+    return true;
+};
+export const getAnswerIndexes = (): Array<number> => {
+    const answers = getUserAnswers();
+    const result = [];
+    for (const key of Object.keys(answers)) {
+        if (answers[key].length !== 0) {
+            result.push(key);
+        }
+    }
+    return result;
+};
+export const clearAnswers = (): void => {
+    localStorage.removeItem(SELECTED_INDEX_QUESTION);
+    localStorage.removeItem(ANSWERS);
+};
