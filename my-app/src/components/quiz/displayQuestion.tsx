@@ -1,11 +1,14 @@
 import React from 'react';
 import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
+
+// import FormGroup from '@material-ui/core/FormGroup';
+// import Checkbox from '@material-ui/core/Checkbox';
 import { myStyle } from '../../styles';
 import { useState } from 'react';
-import { getUserAnswers, setUserAnswer } from '../../utils';
+import { getUserAnswers, setUserAnswerRadio } from '../../utils';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 
 interface DisplayQuestion {
     title: string;
@@ -19,9 +22,9 @@ const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
     const { id, title, question, choices } = props;
     const [answerState, setAnswerState] = useState(getUserAnswers());
 
-    const handleChange = (event) => {
-        const answers = setUserAnswer(id, event.target.name, event.target.checked);
-        setAnswerState(answers);
+    const handleChangeOption = (event) => {
+        const value = (event.target as HTMLInputElement).value;
+        setAnswerState(setUserAnswerRadio(id, value));
     };
     if (choices.length === 0) {
         return (
@@ -33,11 +36,11 @@ const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
     }
 
     const renderChoices = Object.keys(choices).map((key) => {
-        const checked = id in answerState && answerState[id].includes(key);
         return (
             <FormControlLabel
                 key={key}
-                control={<Checkbox color="primary" checked={checked} onChange={handleChange} name={key} />}
+                control={<Radio color="primary" />}
+                value={key}
                 label={choices[key]}
                 className={classes.FormControlLabel}
             />
@@ -56,7 +59,9 @@ const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
             <hr />
             <FormControl component="fieldset" className={classes.formControl}>
                 <h2>{question}</h2>
-                <FormGroup className={classes.formGroup}>{renderChoices}</FormGroup>
+                <RadioGroup value={answerState[id] || null} onChange={handleChangeOption}>
+                    {renderChoices}
+                </RadioGroup>
             </FormControl>
         </div>
     );

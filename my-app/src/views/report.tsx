@@ -25,7 +25,7 @@ const ResultPage: React.FC = () => {
     const questions = getQuestions();
     const answersIndexes = getAnswerIndexes();
     const answers = getUserAnswers();
-    console.log('answers :>> ', answers);
+
     const inValidData =
         (questions.length === 0 && answersIndexes.length === 0) || questions.length !== answersIndexes.length;
     const { showSnackbar } = useSnackBar();
@@ -38,7 +38,6 @@ const ResultPage: React.FC = () => {
         const fetchData = async () => {
             setIsFetching(true);
             const payload = preparePayloadForCheckAnswers();
-            console.log('payload :>> ', payload);
             await axios
                 .post(API_URLS.fetchAnswer, payload)
                 .then((res) => {
@@ -93,8 +92,6 @@ const ResultPage: React.FC = () => {
         const isTrue = !wrongQuestIds.includes(questObj.id);
         const answerTextClass = isTrue ? classes.answerTextPass : classes.answerTextFail;
         const answerIcon = isTrue ? <CheckIcon /> : <CloseIcon />;
-        const questionClass = wrongQuestIds.includes(questObj.id) ? 'fail-quest' : 'pass-quest';
-        console.log('questionClass :>> ', questionClass);
         return (
             <div key={questObj.id}>
                 <h4>
@@ -112,18 +109,12 @@ const ResultPage: React.FC = () => {
     };
 
     return (
-        <div
-            className={classes.reportBox}
-            style={{
-                backgroundImage:
-                    'https://cdn.statically.io/img/i.pinimg.com/originals/0a/99/36/0a9936a5e560ca135d9ae4c67588f192.jpg',
-            }}
-        >
+        <div className={classes.reportBox}>
             <Button onClick={print} startIcon={<PrintIcon />} color="primary">
                 Print result
             </Button>
 
-            <h2 style={{ color: 'red' }}>
+            <h2 style={{ color: resultData.status === 'F' ? 'red' : '#0fab05' }}>
                 Congratulation, you have finished the test with result {passQuestion}/{questions.length} correct
                 answers!!
             </h2>

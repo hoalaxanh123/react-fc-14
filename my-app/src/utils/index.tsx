@@ -14,7 +14,7 @@ export const setIndexQuestion = (index: number): void => {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export const setUserAnswer = (questID: number, answer: string, value: boolean): any => {
+export const setUserAnswerCheckbox = (questID: number, answer: string, value: boolean): any => {
     const answersObj = getUserAnswers();
     const listQuestID = Object.keys(answersObj);
     if (listQuestID.includes(questID.toString())) {
@@ -29,6 +29,12 @@ export const setUserAnswer = (questID: number, answer: string, value: boolean): 
     } else {
         answersObj[questID] = value ? [answer] : [];
     }
+    localStorage.setItem(ANSWERS, JSON.stringify(answersObj));
+    return answersObj;
+};
+export const setUserAnswerRadio = (questID: number, answer: string): any => {
+    const answersObj = getUserAnswers();
+    answersObj[questID] = answer;
     localStorage.setItem(ANSWERS, JSON.stringify(answersObj));
     return answersObj;
 };
