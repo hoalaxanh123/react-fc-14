@@ -166,9 +166,6 @@ const Quiz: React.FC = () => {
         </Grid>,
     );
 
-    if (isRedirectToResultPage) {
-        return <Redirect to={LINK_URL.result} />;
-    }
     const handleClickReadyButton = () => {
         const answers = getAnswerIndexes() || [];
         if (answers.length > 0) {
@@ -183,6 +180,7 @@ const Quiz: React.FC = () => {
                 .catch(() => {
                     clearAllQuesSession();
                     setReloadQuestion(!reloadQuestion);
+                    setIndexQuesCombo(getCurrentIndexQuestion());
                 })
                 .finally(() => {
                     setIsReady(true);
@@ -191,8 +189,12 @@ const Quiz: React.FC = () => {
             setIsReady(true);
         }
     };
+
     if (!isReady) {
         return <GetReadyQuest handleClickReadyButton={handleClickReadyButton} />;
+    }
+    if (isRedirectToResultPage) {
+        return <Redirect to={LINK_URL.result} />;
     }
     return (
         <>

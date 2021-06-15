@@ -15,12 +15,12 @@ import PrintIcon from '@material-ui/icons/Print';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ResultPage: React.FC = () => {
-    // State
+    // ==========State==========
     const defaultState = { status: 'P', incorrectAnswers: [] };
     const [isFetching, setIsFetching] = useState(false);
     const [resultData, setResultData] = useState(defaultState);
 
-    // Variables
+    // ==========Variables==========
     const classes = myStyle();
     const questions = getQuestions();
     const answersIndexes = getAnswerIndexes();
@@ -34,7 +34,7 @@ const ResultPage: React.FC = () => {
     const wrongQuestIds = resultData.status === 'F' ? resultData.incorrectAnswers.map((questOBj) => questOBj.id) : [];
     const passQuestion = questions.length - wrongQuestIds.length;
 
-    // Hooks
+    // ==========Hooks==========
     useEffect(() => {
         const fetchData = async () => {
             setIsFetching(true);
@@ -56,7 +56,7 @@ const ResultPage: React.FC = () => {
         fetchData();
     }, []);
 
-    // Render
+    // ==========Render==========
     if (inValidData) {
         return (
             <div className={classes.center} style={{ padding: '50px' }}>
