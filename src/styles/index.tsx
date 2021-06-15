@@ -265,10 +265,18 @@ export const myStyle = makeStyles((theme) => ({
             },
         },
     },
+    menuResponsiveMobileContainer: {},
     menuResponsiveMobile: {
+        textAlign: 'left',
+        padding: '20px',
         '&>li': {
             listStyleType: 'none',
             marginTop: '5px',
+            textAlign: 'justify',
+            margin: '0 auto',
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
         },
     },
     menuHeader: {

@@ -9,7 +9,7 @@ const NotFound: React.FC = () => {
     const classes = myStyle();
     return (
         <Container maxWidth="lg" className={classes.errorPage}>
-            <img src="404.png" width={'65%'} />
+            <img src="404.png" width={'65%'} alt="404 logo" />
             <h2>Sorry, the resource that you looking for no longer exist</h2>
             <Link to={LINK_URL.homepage} className={classes.buttonLink}>
                 go back to home

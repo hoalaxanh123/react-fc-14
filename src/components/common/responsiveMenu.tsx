@@ -6,6 +6,7 @@ import { LINK_URL, LOGGED, ROLE } from '../../constants';
 import { myStyle } from '../../styles';
 import CustomNavLink from '../custom/customLink';
 import UserMenu from './userMenu';
+import Divider from '@material-ui/core/Divider';
 
 export const MyResponsiveMenu: React.FC = () => {
     const classes = myStyle();
@@ -43,7 +44,6 @@ export const MyResponsiveMenu: React.FC = () => {
             </RouterLink>
         </>
     );
-    console.log('state.mobileView :>> ', state.mobileView);
     const LoginOrLogoutComponent = logged ? <UserMenu isUsingMobile={state.mobileView} /> : LinkToLogin;
     const LinkToManagement =
         role !== 'admin' ? null : (
@@ -53,7 +53,7 @@ export const MyResponsiveMenu: React.FC = () => {
         return (
             <Toolbar className={classes.toolbar}>
                 {logoElement}
-                {getMenuForMobileView()}
+                {getMenuForDesktopView()}
             </Toolbar>
         );
     };
@@ -83,7 +83,7 @@ export const MyResponsiveMenu: React.FC = () => {
                         onClose: handleDrawerClose,
                     }}
                 >
-                    <div className={classes.drawerContainer}>{getMenuForDesktopView()}</div>
+                    {getMenuForMobileView()}
                 </Drawer>
 
                 <div>{logoElement}</div>
@@ -91,24 +91,29 @@ export const MyResponsiveMenu: React.FC = () => {
         );
     };
 
-    const getMenuForDesktopView = () => {
+    const getMenuForMobileView = () => {
         return (
-            <ul className={classes.menuResponsiveMobile}>
-                <li>
-                    <CustomNavLink to={LINK_URL.homepage} label={'Home'} activeOnlyWhenExact={true} />
-                </li>
-                <li>
-                    <CustomNavLink to={LINK_URL.quiz} label="Quiz challenge" activeOnlyWhenExact={false} />
-                </li>
-                <li>
-                    <CustomNavLink to={LINK_URL.result} label="Result" activeOnlyWhenExact={false} />
-                </li>
-                <li>
-                    <CustomNavLink to={LINK_URL.about} label="About" activeOnlyWhenExact={false} />
-                </li>
-                <li>{LinkToManagement}</li>
-                <li>{LoginOrLogoutComponent}</li>
-            </ul>
+            <div className={classes.menuResponsiveMobileContainer}>
+                <ul className={classes.menuResponsiveMobile}>
+                    <li>
+                        <CustomNavLink to={LINK_URL.homepage} label={'Home'} activeOnlyWhenExact={true} />
+                    </li>
+                    <li>
+                        <CustomNavLink to={LINK_URL.quiz} label="Quiz" activeOnlyWhenExact={false} />
+                    </li>
+                    <li>
+                        <CustomNavLink to={LINK_URL.result} label="Result" activeOnlyWhenExact={false} />
+                    </li>
+                    <li>
+                        <CustomNavLink to={LINK_URL.about} label="About" activeOnlyWhenExact={false} />
+                    </li>
+                    <li>{LinkToManagement}</li>
+                    <li>
+                        <Divider />
+                    </li>
+                    <li>{LoginOrLogoutComponent}</li>
+                </ul>
+            </div>
         );
     };
 
@@ -120,7 +125,7 @@ export const MyResponsiveMenu: React.FC = () => {
         </Typography>
     );
 
-    const getMenuForMobileView = () => {
+    const getMenuForDesktopView = () => {
         return (
             <>
                 <nav>
