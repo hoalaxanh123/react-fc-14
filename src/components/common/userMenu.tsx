@@ -47,7 +47,16 @@ export const UserMenu: React.FC = () => {
             >
                 Hi, {localStorage.getItem(USERNAME)}
             </Button>
-            <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
+            <Menu
+                id="simple-menu"
+                anchorEl={anchorEl}
+                getContentAnchorEl={null}
+                anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+                keepMounted
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+            >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>Setting</MenuItem>
                 <MenuItem onClick={test403Page}>Test 403 page</MenuItem>
