@@ -9,7 +9,6 @@ html {
 }
 
 .my-main-contain {
-    // border: 1px solid black;
     padding: 5px 0 10px 0;
     animation-name: bot-to-top;
     animation-duration: 1s;
@@ -23,67 +22,4 @@ html {
         margin-top: 0%;
         opacity: 1;
     }
-}
-
-.button-link {
-    padding: 10px 20px 10px 20px;
-    color: #fff;
-    background-color: #1797f2;
-    font-size: 0.875rem;
-    font-weight: 500;
-    line-height: 1.75;
-    border-radius: 4px;
-    letter-spacing: 0.02857em;
-    text-transform: uppercase;
-    text-decoration: none;
-}
-.button-link:hover {
-    transition: 0.75s;
-    font-weight: bold;
-}
-
-.timer {
-    color: #004085;
-    background: #cce5ff;
-    border: 1px solid #b8daff;
-    height: 45px;
-    padding: 0 8px;
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 145px;
-    float: right;
-    margin-top: -10px;
-}
-
-.timer .time_left_txt {
-    font-weight: 400;
-    font-size: 17px;
-    user-select: none;
-}
-
-.timer .timer_sec {
-    font-size: 18px;
-    font-weight: 500;
-    height: 30px;
-    width: 45px;
-    color: #fff;
-    border-radius: 5px;
-    line-height: 30px;
-    text-align: center;
-    background: #343a40;
-    border: 1px solid #343a40;
-    user-select: none;
-}
-.overral {
-    width: 100%;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.9); /* Black background with opacity */
-    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
 }

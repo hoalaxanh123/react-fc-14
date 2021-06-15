@@ -12,7 +12,7 @@ const Forbidden: React.FC = () => {
         <Container maxWidth="lg" component="main" className={classes.errorPage}>
             <img src="403.png" />
             <h2>An error occurred when we tried to process your request !</h2>
-            <Link to={LINK_URL.homepage} className={'button-link'}>
+            <Link to={LINK_URL.homepage} className={classes.buttonLink}>
                 go back to home
             </Link>
         </Container>

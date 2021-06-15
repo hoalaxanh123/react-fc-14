@@ -13,6 +13,7 @@ const About: React.FC = () => {
                 <li>Accounts: admin and test with the same password 123456.</li>
                 <li>Account test can&apos;t access into the page management (/management), it will raise error 403.</li>
                 <li>Users can print their results.</li>
+                <li>Automatically format code when committing code.</li>
             </ul>
             <h2>REQUIREMENTS </h2>
             <ul className={classes.listRequirement}>

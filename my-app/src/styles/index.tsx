@@ -174,6 +174,7 @@ export const myStyle = makeStyles((theme) => ({
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
         zIndex: 9999999,
         background: '#fff',
+        transition: '20s',
     },
     questionText: {
         fontSize: '25px',
@@ -219,6 +220,33 @@ export const myStyle = makeStyles((theme) => ({
     listRule: {
         '&>li': {
             listStyleType: 'circle',
+        },
+    },
+    overlay: {
+        width: '100%',
+        height: '100%',
+        position: 'fixed',
+        top: '0',
+        left: '0',
+        right: '0',
+        bottom: '0',
+        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+        zIndex: 2,
+    },
+    buttonLink: {
+        padding: '10px 20px 10px 20px',
+        color: '#fff',
+        backgroundColor: '#1797f2',
+        fontSize: '0.875rem',
+        fontWeight: 500,
+        lineHeight: '1.75',
+        borderRadius: '4px',
+        letterSpacing: '0.02857em',
+        textTransform: 'uppercase',
+        textDecoration: 'none',
+        '&:hover': {
+            transition: '0.75s',
+            fontWeight: 'bold',
         },
     },
     listRequirement: {

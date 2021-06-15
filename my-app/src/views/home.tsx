@@ -11,7 +11,7 @@ const HomepageAuthorized = (classes) => (
         <ErrorIcon className={classes.ErrorIcon} />
         <h1>Challenge accepted</h1>
         <h5>You have not finished your challenge yet. Get it now to receive your ranking</h5>
-        <Link to={LINK_URL.quiz} className={'button-link'}>
+        <Link to={LINK_URL.quiz} className={classes.buttonLink}>
             Go to Quiz challenge
         </Link>
     </div>
@@ -22,7 +22,7 @@ const HomepageUnauthorized = (classes) => (
         <WarningIcon className={classes.warningIcon} />
         <h1>Are you ready for challenge?</h1>
         <h5>The quiz is ready to start, but you need to login first to accept it</h5>
-        <Link to={LINK_URL.login} className={'button-link'}>
+        <Link to={LINK_URL.login} className={classes.buttonLink}>
             Login to your account
         </Link>
     </div>
