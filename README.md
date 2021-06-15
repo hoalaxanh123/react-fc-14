@@ -42,7 +42,7 @@ In the project directory, you can run:
 ### `yarn format`
 ### `yarn build`
 ## Author
-Name: Vuong nguyen
-Phone: 
-Mail: nguyenvanvuong972@gmail.com  
+Name: Vuong nguyen\
+Phone: \
+Mail: nguyenvanvuong972@gmail.com  \
 Skype: https://join.skype.com/invite/jLg46TvJiinh
