@@ -62,7 +62,7 @@ const ResultPage: React.FC = () => {
             <div className={classes.center} style={{ padding: '50px' }}>
                 <img src="low_battery.png" />
                 <h1>You don&apos;t have any records, take your challenge first!</h1>
-                <Link to={LINK_URL.quiz} className={'button-link'}>
+                <Link to={LINK_URL.quiz} className={classes.buttonLink}>
                     Take now !
                 </Link>
             </div>
