@@ -13,6 +13,7 @@ import {
     getAnswerIndexes,
     getCurrentIndexQuestion,
     isEligibleForSubmit,
+    saveQuestion,
     setIndexQuestion,
 } from '../utils';
 import { API_URLS, BTN_NEXT_LABEL, BTN_PREVIOUS_LABEL, BTN_SUBMIT_LABEL, LINK_URL } from '../constants';
@@ -34,11 +35,11 @@ const Quiz: React.FC = () => {
     const [isRedirectToResultPage, setIsRedirectToResultPage] = useState(false);
     const { showSnackbar } = useSnackBar();
 
+    const isLastQuestion = quesIndexState + 1 === questionsData.length;
     const commonCondition = questionsData.length === 0 || isFetching;
     const isDisablePreviousButton = commonCondition || quesIndexState === 0;
-    const isDisableNextButton = commonCondition;
+    const isDisableNextButton = commonCondition || isLastQuestion;
     const isDisableSubmitButton = commonCondition;
-    const isLastQuestion = quesIndexState + 1 === questionsData.length;
 
     // Hooks
     useEffect(() => {
@@ -47,6 +48,7 @@ const Quiz: React.FC = () => {
             await axios(API_URLS.fetchQuestion)
                 .then((res) => {
                     setQuestionsData(res.data.result);
+                    saveQuestion(res.data.result);
                 })
                 .catch((error) => {
                     // TODO: Change to use snackBar
@@ -89,10 +91,10 @@ const Quiz: React.FC = () => {
         }
     };
     const handleSubmit = () => {
-        if (isLastQuestion && isEligibleForSubmit(questionsData.length)) {
+        if (isEligibleForSubmit(questionsData.length)) {
             const confirmSubmit = confirm('Are you sure to summit?');
             if (confirmSubmit) {
-                clearAnswers();
+                // clearAnswers();
                 setIsRedirectToResultPage(true);
             }
         } else {
@@ -123,7 +125,7 @@ const Quiz: React.FC = () => {
                     onClick={handleChangeQuestionIndex}
                     color={answered ? 'primary' : 'default'}
                     disabled={isFetching || index === quesIndexState}
-                    endIcon={answered ? <CheckIcon /> : null}
+                    // endIcon={answered ? <CheckIcon /> : null}
                 >
                     {index + 1}
                 </Button>

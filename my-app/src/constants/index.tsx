@@ -8,6 +8,7 @@ export const ROLE_TYPE = {
     MEMBER: 'member',
 };
 export const ANSWERS = 'answers';
+export const QUESTIONS = 'questions';
 export const ANSWERS_ACTIONS = {
     CHECK: 'check',
     UNCHECK: 'uncheck',
@@ -44,7 +45,9 @@ export const LINK_URL = {
     login: '/login',
     logout: '/logout',
     management: '/management',
+    test_403: '/access denied',
 };
+export const USERNAME_QUESTION = 'usr_ques';
 
 export const BTN_PREVIOUS_LABEL = 'Prev';
 export const BTN_NEXT_LABEL = 'Next';

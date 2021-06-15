@@ -197,6 +197,22 @@ export const myStyle = makeStyles((theme) => ({
         marginTop: '-40px !important',
         paddingBottom: '20px',
     },
+    reportBox: {
+        textAlign: 'left',
+    },
+    questionBlock: {
+        marginTop: '-15px',
+    },
+    answerTextPass: {
+        marginTop: '-10px',
+        paddingBottom: '5px',
+        color: 'green',
+    },
+    answerTextFail: {
+        marginTop: '-10px',
+        paddingBottom: '5px',
+        color: 'red',
+    },
 }));
 
 export const modalStyle = makeStyles((theme) => ({

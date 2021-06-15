@@ -13,11 +13,12 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
 import useSnackBar from '../hook';
-import { LINK_URL, LOGGED, PAGE_TITLES, ROLE, USERNAME } from '../constants';
+import { LINK_URL, LOGGED, PAGE_TITLES, ROLE, USERNAME, USERNAME_QUESTION } from '../constants';
 import withMyTheme from '../HOC';
 import Paper from '@material-ui/core/Paper';
 import { Container } from '@material-ui/core';
 import { Redirect, useHistory } from 'react-router';
+import { clearAnswers } from '../utils';
 
 const Login: React.FC = () => {
     const classes = myStyle();
@@ -60,9 +61,13 @@ const Login: React.FC = () => {
         setTimeout(() => {
             hideSnackBar(snackBarLoadingID);
             if (['admin', 'test'].includes(username) && password === '123456') {
+                if (localStorage.getItem(USERNAME_QUESTION) !== username) {
+                    clearAnswers();
+                }
                 showSnackbar(`Welcome back, ${username}`, 'success');
                 localStorage.setItem(LOGGED, 'true');
                 localStorage.setItem(USERNAME, username);
+                localStorage.setItem(USERNAME_QUESTION, username);
                 localStorage.setItem(ROLE, username === 'admin' ? 'admin' : 'user');
                 previousURL && typeof previousURL === 'string' ? history.goBack() : history.replace(defaultURL);
             } else {

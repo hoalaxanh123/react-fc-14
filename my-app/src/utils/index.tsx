@@ -1,4 +1,5 @@
-import { ANSWERS, SELECTED_INDEX_QUESTION } from '../constants';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ANSWERS, QUESTIONS, SELECTED_INDEX_QUESTION } from '../constants';
 
 export const getCurrentIndexQuestion = (): number => {
     const index = localStorage.getItem(SELECTED_INDEX_QUESTION);
@@ -67,4 +68,28 @@ export const getAnswerIndexes = (): Array<number> => {
 export const clearAnswers = (): void => {
     localStorage.removeItem(SELECTED_INDEX_QUESTION);
     localStorage.removeItem(ANSWERS);
+    localStorage.removeItem(QUESTIONS);
+};
+
+// eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+export const saveQuestion = (questions: any): void => {
+    localStorage.setItem(QUESTIONS, JSON.stringify(questions));
+};
+
+export const getQuestions = (): any => {
+    return JSON.parse(localStorage.getItem(QUESTIONS)) || [];
+};
+
+export const preparePayloadForCheckAnswers = (): any => {
+    const answers = getUserAnswers();
+    let result = {};
+    const listAnswer = [];
+    Object.keys(answers).forEach((key) => {
+        listAnswer.push({
+            id: key,
+            choice: answers[key].toString(),
+        });
+    });
+    result = { listAnswer: listAnswer };
+    return result;
 };
