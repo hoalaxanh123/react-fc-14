@@ -14,6 +14,9 @@ const About: React.FC = () => {
                 <li>Account test can&apos;t access into the page management (/management), it will raise error 403.</li>
                 <li>Users can print their results.</li>
                 <li>Automatically format code when committing code.</li>
+                <li>User can continue their in-progress test..</li>
+                <li>If the user logs in with another account, the old progress session will be deleted.</li>
+                <li>Users can manually delete their progress session (dropdown menu).</li>
             </ul>
             <h2>REQUIREMENTS </h2>
             <ul className={classes.listRequirement}>

@@ -43,6 +43,7 @@ const Quiz: React.FC = () => {
     const [questionsData, setQuestionsData] = useState([]);
     const [isRedirectToResultPage, setIsRedirectToResultPage] = useState(false);
     const [refresh, setRefresh] = useState(false);
+    const [reloadQuestion, setReloadQuestion] = useState(false);
 
     const isLastQuestion = quesIndexState + 1 === questionsData.length;
     const commonCondition = questionsData.length === 0 || isFetching;
@@ -70,7 +71,7 @@ const Quiz: React.FC = () => {
         };
 
         fetchData();
-    }, []);
+    }, [reloadQuestion]);
 
     // Functions
     const handleChangeQuestionIndex = (index) => {
@@ -170,7 +171,6 @@ const Quiz: React.FC = () => {
     }
     const handleClickReadyButton = () => {
         const answers = getAnswerIndexes() || [];
-        console.log('answers :>> ', answers);
         if (answers.length > 0) {
             confirm({
                 confirmationText: 'Yes',
@@ -182,6 +182,7 @@ const Quiz: React.FC = () => {
                 })
                 .catch(() => {
                     clearAllQuesSession();
+                    setReloadQuestion(!reloadQuestion);
                 })
                 .finally(() => {
                     setIsReady(true);
@@ -195,7 +196,6 @@ const Quiz: React.FC = () => {
     }
     return (
         <>
-            {/* <div className="overral"> */}
             <div className={classes.quizBox}>
                 {renderContent}
                 <br />
@@ -233,7 +233,6 @@ const Quiz: React.FC = () => {
                 <br />
                 <div style={{ width: '100%', textAlign: 'center' }}></div>
             </div>
-            {/* </div> */}
         </>
     );
 };
