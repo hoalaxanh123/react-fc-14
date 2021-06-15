@@ -4,6 +4,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import ListAltIcon from '@material-ui/icons/ListAlt';
 import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
 import AlarmIcon from '@material-ui/icons/Alarm';
+import LocalLibraryIcon from '@material-ui/icons/LocalLibrary';
 
 export const getIconByLink = (link: string, active: boolean): React.ReactElement => {
     switch (link) {
@@ -17,6 +18,8 @@ export const getIconByLink = (link: string, active: boolean): React.ReactElement
             return active ? <AlarmIcon color="primary" /> : <AlarmIcon />;
         case LINK_URL.result:
             return active ? <ListAltIcon color="primary" /> : <ListAltIcon />;
+        case LINK_URL.about:
+            return active ? <LocalLibraryIcon color="primary" /> : <LocalLibraryIcon />;
         default:
             return null;
     }

@@ -35,6 +35,7 @@ export const PAGE_TITLES = {
     login: getTitle('Login'),
     403: getTitle('Forbidden'),
     404: getTitle('Not found'),
+    about: getTitle('About'),
 };
 export const MESSAGE_BAR_DURATION = 3500;
 
@@ -46,6 +47,7 @@ export const LINK_URL = {
     logout: '/logout',
     management: '/management',
     test_403: '/access denied',
+    about: '/about',
 };
 export const USERNAME_QUESTION = 'usr_ques';
 

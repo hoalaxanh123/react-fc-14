@@ -28,6 +28,10 @@ const ResultPage: React.FC = () => {
 
     const inValidData =
         (questions.length === 0 && answersIndexes.length === 0) || questions.length !== answersIndexes.length;
+
+    console.log('inValidData :>> ', inValidData);
+    console.log('questions :>> ', questions);
+    console.log('answersIndexes :>> ', answersIndexes);
     const { showSnackbar } = useSnackBar();
 
     const wrongQuestIds = resultData.status === 'F' ? resultData.incorrectAnswers.map((questOBj) => questOBj.id) : [];

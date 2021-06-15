@@ -17,8 +17,9 @@ const GetReadyQuest: React.FC<LoadingQuestProps> = (props: LoadingQuestProps) =>
                 </h2>
                 <hr />
                 <ul className={classes.listRule}>
-                    <li>Once you select your answer, it can&apos;t be undone.</li>
+                    <li>Once you select your answer, it can&apos;t be un-check.</li>
                     <li>You can&apos;t select multi option.</li>
+                    <li>You have to choose your answer for all questions.</li>
                     <li>You&apos;ll get points on the basis of your correct answers.</li>
                     <li>That all, have fun !</li>
                 </ul>

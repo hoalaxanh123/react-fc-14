@@ -38,7 +38,8 @@ const MyMenu: React.FC = () => {
                     <nav>
                         <CustomNavLink to={LINK_URL.homepage} label={'Home'} activeOnlyWhenExact={true} />
                         <CustomNavLink to={LINK_URL.quiz} label="Quiz challenge" activeOnlyWhenExact={false} />
-                        <CustomNavLink to={LINK_URL.result} label="Report" activeOnlyWhenExact={false} />
+                        <CustomNavLink to={LINK_URL.result} label="Result" activeOnlyWhenExact={false} />
+                        <CustomNavLink to={LINK_URL.about} label="About" activeOnlyWhenExact={false} />
                         {LinkToManagement}
                     </nav>
                     {LoginOrLogoutComponent}

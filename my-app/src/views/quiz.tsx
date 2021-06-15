@@ -146,7 +146,9 @@ const Quiz: React.FC = () => {
         return <Redirect to={LINK_URL.result} />;
     }
     const handleClickReadyButton = () => {
-        if (getAnswerIndexes()) {
+        const answers = getAnswerIndexes() || [];
+        console.log('answers :>> ', answers);
+        if (answers.length > 0) {
             confirm({
                 confirmationText: 'Yes',
                 cancellationText: 'NO',
@@ -187,16 +189,7 @@ const Quiz: React.FC = () => {
                     >
                         {BTN_PREVIOUS_LABEL}
                     </Button>
-                    <Button
-                        variant="contained"
-                        color={'secondary'}
-                        className={classes.buttonNav}
-                        disabled={isDisableSubmitButton}
-                        endIcon={<PublishIcon />}
-                        onClick={() => handleNavButton(BTN_SUBMIT_LABEL)}
-                    >
-                        {BTN_SUBMIT_LABEL}
-                    </Button>
+
                     <Button
                         variant="contained"
                         color={'primary'}
@@ -208,12 +201,24 @@ const Quiz: React.FC = () => {
                         {BTN_NEXT_LABEL}
                     </Button>
                 </Grid>
-                <hr />
                 <Grid container spacing={2} className={classes.gridCenter}>
                     {buttons}
                 </Grid>
                 <br />
                 {processBar}
+                <br />
+                <div style={{ width: '100%', textAlign: 'center' }}>
+                    <Button
+                        variant="contained"
+                        style={{ backgroundColor: '#1da1f2', color: 'white' }}
+                        className={classes.buttonNav}
+                        disabled={isDisableSubmitButton}
+                        endIcon={<PublishIcon />}
+                        onClick={() => handleNavButton(BTN_SUBMIT_LABEL)}
+                    >
+                        {BTN_SUBMIT_LABEL}
+                    </Button>
+                </div>
             </div>
             {/* </div> */}
         </>

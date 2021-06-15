@@ -168,7 +168,7 @@ export const myStyle = makeStyles((theme) => ({
         },
     },
     quizBox: {
-        margin: '10% auto',
+        margin: '8% auto',
         padding: '30px',
         width: '70%',
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
@@ -219,6 +219,23 @@ export const myStyle = makeStyles((theme) => ({
     listRule: {
         '&>li': {
             listStyleType: 'circle',
+        },
+    },
+    listRequirement: {
+        textAlign: 'left',
+        fontSize: '16px',
+        marginLeft: '2%',
+        '&>li': {
+            listStyleType: 'none',
+            marginTop: '5px',
+            paddingLeft: '1.3em',
+            '&::before': {
+                // content: '&#x2714;',
+                content: '"✓"',
+                display: 'inline-block',
+                marginLeft: '-1.3em',
+                width: '1.3em',
+            },
         },
     },
 }));

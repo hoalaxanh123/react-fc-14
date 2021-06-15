@@ -78,6 +78,7 @@ export const clearAnswers = (): void => {
 export const clearAllQuesSession = (): void => {
     clearAnswers();
     localStorage.removeItem(QUESTIONS);
+    localStorage.removeItem(SELECTED_INDEX_QUESTION);
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types

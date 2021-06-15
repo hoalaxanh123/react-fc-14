@@ -9,6 +9,7 @@ import NotFound from './views/404';
 import Forbidden from './views/403';
 import Login from './views/login';
 import Management from './views/admin';
+import About from './views/about';
 import { PrivateRoute } from './routes/privateRoute';
 
 ReactDOM.render(
@@ -32,6 +33,10 @@ ReactDOM.render(
             <Route path={LINK_URL.login} exact>
                 <Login />
             </Route>
+            <Route path={LINK_URL.about} exact>
+                <About />
+            </Route>
+
             <Route path={LINK_URL.test_403} exact>
                 <Forbidden />
             </Route>
