@@ -6,9 +6,17 @@ import { myStyle } from '../../styles';
 import { LINK_URL, LOGGED, ROLE, USERNAME } from '../../constants';
 import { useHistory } from 'react-router';
 import { clearAnswers } from '../../utils';
+import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
-export const UserMenu: React.FC = () => {
+interface UserMenuProps {
+    isUsingMobile?: boolean;
+}
+
+export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
+    console.log('props :>> ', props);
     const [anchorEl, setAnchorEl] = React.useState(null);
+    const { isUsingMobile } = props;
+    console.log('isUsingMobile :>> ', isUsingMobile);
     const classes = myStyle();
     const history = useHistory();
 
@@ -34,19 +42,35 @@ export const UserMenu: React.FC = () => {
         handleClose();
         window.location.reload();
     };
+    const renderMenuController = () => {
+        if (!isUsingMobile) {
+            return (
+                <Button
+                    color="primary"
+                    variant="outlined"
+                    className={classes.link}
+                    aria-controls="simple-menu"
+                    aria-haspopup="true"
+                    onClick={handleClick}
+                >
+                    Hi, {localStorage.getItem(USERNAME)}
+                </Button>
+            );
+        }
+        return (
+            <span className={classes.link} onClick={handleClick}>
+                <AssignmentIndIcon />
+                <label style={{ cursor: 'pointer', display: 'table-caption', width: 'max-content' }}>
+                    Hi, {localStorage.getItem(USERNAME)}
+                </label>
+            </span>
+        );
+    };
 
     return (
         <>
-            <Button
-                color="primary"
-                variant="outlined"
-                className={classes.link}
-                aria-controls="simple-menu"
-                aria-haspopup="true"
-                onClick={handleClick}
-            >
-                Hi, {localStorage.getItem(USERNAME)}
-            </Button>
+            {renderMenuController()}
+
             <Menu
                 id="simple-menu"
                 anchorEl={anchorEl}

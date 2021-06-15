@@ -265,6 +265,23 @@ export const myStyle = makeStyles((theme) => ({
             },
         },
     },
+    menuResponsiveMobile: {
+        '&>li': {
+            listStyleType: 'none',
+            marginTop: '5px',
+        },
+    },
+    menuHeader: {
+        backgroundColor: '#fafafa',
+        color: 'black',
+        '@media (max-width: 900px)': {
+            paddingLeft: 0,
+        },
+    },
+    drawerContainer: {
+        padding: '20px 20px',
+        marginLeft: '-40px',
+    },
 }));
 
 export const modalStyle = makeStyles((theme) => ({
