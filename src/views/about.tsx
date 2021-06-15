@@ -11,6 +11,7 @@ const About: React.FC = () => {
             <h2>NOTE </h2>
             <ul className={classes.listRequirement}>
                 <li>Support responsive.</li>
+                <li>There is effect on hover and active menu.</li>
                 <li>Accounts: admin and test with the same password 123456.</li>
                 <li>Account test can&apos;t access into the page management (/management), it will raise error 403.</li>
                 <li>Users can print their results.</li>
