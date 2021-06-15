@@ -42,6 +42,10 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
         handleClose();
         window.location.reload();
     };
+    const clearCache = () => {
+        localStorage.clear();
+        window.location.reload();
+    };
     const renderMenuController = () => {
         if (!isUsingMobile) {
             return (
@@ -85,6 +89,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
                 <MenuItem onClick={handleClose}>Setting</MenuItem>
                 <MenuItem onClick={test403Page}>Test 403 page</MenuItem>
                 <MenuItem onClick={deleteAnswers}>Delete answers</MenuItem>
+                <MenuItem onClick={clearCache}>Clear cache</MenuItem>
 
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
