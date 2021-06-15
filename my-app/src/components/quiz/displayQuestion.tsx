@@ -51,10 +51,10 @@ const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
         <div>
             <div>
                 <span className={classes.questionText}>{title}</span>
-                <div className="timer">
+                {/* <div className="timer">
                     <div className="time_left_txt">Time Off</div>
                     <div className="timer_sec">00</div>
-                </div>
+                </div> */}
             </div>
             <hr />
             <FormControl component="fieldset" className={classes.formControl}>

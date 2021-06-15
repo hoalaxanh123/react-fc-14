@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { myStyle } from '../../styles';
 import { LINK_URL, LOGGED, ROLE, USERNAME } from '../../constants';
 import { useHistory } from 'react-router';
+import { clearAnswers } from '../../utils';
 
 export const UserMenu: React.FC = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -21,6 +22,10 @@ export const UserMenu: React.FC = () => {
     };
     const test403Page = () => {
         history.replace(LINK_URL.test_403);
+    };
+    const deleteAnswers = () => {
+        clearAnswers();
+        window.location.reload();
     };
     const handleLogout = () => {
         localStorage.removeItem(LOGGED);
@@ -45,7 +50,9 @@ export const UserMenu: React.FC = () => {
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>Setting</MenuItem>
-                <MenuItem onClick={test403Page}>TEST 403 Page</MenuItem>
+                <MenuItem onClick={test403Page}>test 403 page</MenuItem>
+                <MenuItem onClick={deleteAnswers}>Delete answers</MenuItem>
+
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>
             </Menu>
         </>

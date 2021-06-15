@@ -203,6 +203,9 @@ export const myStyle = makeStyles((theme) => ({
     questionBlock: {
         marginTop: '-15px',
     },
+    titleRule: {
+        marginTop: '-10px',
+    },
     answerTextPass: {
         marginTop: '-10px',
         paddingBottom: '5px',
@@ -212,6 +215,11 @@ export const myStyle = makeStyles((theme) => ({
         marginTop: '-10px',
         paddingBottom: '5px',
         color: 'red',
+    },
+    listRule: {
+        '&>li': {
+            listStyleType: 'circle',
+        },
     },
 }));
 

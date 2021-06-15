@@ -74,6 +74,9 @@ export const getAnswerIndexes = (): Array<number> => {
 export const clearAnswers = (): void => {
     localStorage.removeItem(SELECTED_INDEX_QUESTION);
     localStorage.removeItem(ANSWERS);
+};
+export const clearAllQuesSession = (): void => {
+    clearAnswers();
     localStorage.removeItem(QUESTIONS);
 };
 

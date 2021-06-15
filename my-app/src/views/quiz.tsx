@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import {
+    clearAllQuesSession,
     getAnswerIndexes,
     getCurrentIndexQuestion,
     isEligibleForSubmit,
@@ -24,9 +25,10 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import CheckIcon from '@material-ui/icons/Check';
 import PublishIcon from '@material-ui/icons/Publish';
-import CircularProgress from '@material-ui/core/CircularProgress';
+import LoadingQuest from '../components/quiz/loading';
 import { useConfirm } from 'material-ui-confirm';
 import LinearProgress from '@material-ui/core/LinearProgress';
+import GetReadyQuest from '../components/quiz/ready';
 
 const Quiz: React.FC = () => {
     // Variables
@@ -35,6 +37,7 @@ const Quiz: React.FC = () => {
     const confirm = useConfirm();
     const [quesIndexState, setQuestIndexState] = useState(getCurrentIndexQuestion());
     const [isFetching, setIsFetching] = useState(false);
+    const [isReady, setIsReady] = useState(false);
     const [questionsData, setQuestionsData] = useState([]);
     const [isRedirectToResultPage, setIsRedirectToResultPage] = useState(false);
     const { showSnackbar } = useSnackBar();
@@ -108,10 +111,7 @@ const Quiz: React.FC = () => {
     // Render
     const quizBoxTitle = questionsData?.length > 0 ? `Question ${quesIndexState + 1} of ${questionsData.length}` : '';
     const renderContent = isFetching ? (
-        <div className={classes.center}>
-            <CircularProgress size={80} color="secondary" />
-            <h1>Getting questions.....</h1>
-        </div>
+        <LoadingQuest />
     ) : (
         <DisplayQuestion
             title={quizBoxTitle}
@@ -144,6 +144,29 @@ const Quiz: React.FC = () => {
 
     if (isRedirectToResultPage) {
         return <Redirect to={LINK_URL.result} />;
+    }
+    const handleClickReadyButton = () => {
+        if (getAnswerIndexes()) {
+            confirm({
+                confirmationText: 'Yes',
+                cancellationText: 'NO',
+                title: 'You have an unfinished session, do you want to continue??',
+            })
+                .then(() => {
+                    setIsReady(true);
+                })
+                .catch(() => {
+                    clearAllQuesSession();
+                })
+                .finally(() => {
+                    setIsReady(true);
+                });
+        } else {
+            setIsReady(true);
+        }
+    };
+    if (!isReady) {
+        return <GetReadyQuest handleClickReadyButton={handleClickReadyButton} />;
     }
     return (
         <>
