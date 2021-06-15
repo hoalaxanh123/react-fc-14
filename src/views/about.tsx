@@ -17,6 +17,7 @@ const About: React.FC = () => {
                 <li>User can continue their in-progress test..</li>
                 <li>If the user logs in with another account, the old progress session will be deleted.</li>
                 <li>Users can manually delete their progress session (dropdown menu).</li>
+                <li>Each page has its own title.</li>
             </ul>
             <h2>REQUIREMENTS </h2>
             <ul className={classes.listRequirement}>
