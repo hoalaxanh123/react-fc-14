@@ -8,12 +8,13 @@ import { MESSAGE_BAR_DURATION } from '../constants';
 import '../styles/my-css.scss';
 import { Container } from '@material-ui/core';
 import Head from '../components/common/head';
+import { ConfirmProvider } from 'material-ui-confirm';
 
 const withMyTheme = (WrappedComponent: React.ComponentType, title = '') => {
     // eslint-disable-next-line react/display-name,@typescript-eslint/explicit-module-boundary-types
     return function () {
         return (
-            <>
+            <ConfirmProvider>
                 <CssBaseline />
                 {/* Head */}
                 <Head title={title || ''} />
@@ -41,7 +42,7 @@ const withMyTheme = (WrappedComponent: React.ComponentType, title = '') => {
                     }}
                 />
                 {/* End Message bar */}
-            </>
+            </ConfirmProvider>
         );
     };
 };

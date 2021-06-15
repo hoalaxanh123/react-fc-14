@@ -10,6 +10,9 @@ import useSnackBar from '../hook';
 
 import CheckIcon from '@material-ui/icons/Check';
 import CloseIcon from '@material-ui/icons/Close';
+import Button from '@material-ui/core/Button';
+import PrintIcon from '@material-ui/icons/Print';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const ResultPage: React.FC = () => {
     // State
@@ -68,6 +71,7 @@ const ResultPage: React.FC = () => {
     if (isFetching) {
         return (
             <div className={classes.center} style={{ padding: '50px' }}>
+                <CircularProgress size={80} color="secondary" />
                 <h1>Fetching data....</h1>
             </div>
         );
@@ -106,15 +110,23 @@ const ResultPage: React.FC = () => {
     const print = () => {
         window.print();
     };
+
     return (
-        <div className={classes.reportBox}>
-            <button onClick={print} className="noPrint">
+        <div
+            className={classes.reportBox}
+            style={{
+                backgroundImage:
+                    'https://cdn.statically.io/img/i.pinimg.com/originals/0a/99/36/0a9936a5e560ca135d9ae4c67588f192.jpg',
+            }}
+        >
+            <Button onClick={print} startIcon={<PrintIcon />} color="primary">
                 Print result
-            </button>
-            <h1 style={{ color: 'red' }}>
+            </Button>
+
+            <h2 style={{ color: 'red' }}>
                 Congratulation, you have finished the test with result {passQuestion}/{questions.length} correct
                 answers!!
-            </h1>
+            </h2>
             {renderQuest}
         </div>
     );

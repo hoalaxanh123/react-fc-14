@@ -9,7 +9,6 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import {
-    clearAnswers,
     getAnswerIndexes,
     getCurrentIndexQuestion,
     isEligibleForSubmit,
@@ -25,10 +24,15 @@ import ArrowRightIcon from '@material-ui/icons/ArrowRight';
 
 import CheckIcon from '@material-ui/icons/Check';
 import PublishIcon from '@material-ui/icons/Publish';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { useConfirm } from 'material-ui-confirm';
+import LinearProgress from '@material-ui/core/LinearProgress';
+
 const Quiz: React.FC = () => {
     // Variables
     const classes = myStyle();
     const buttons = [];
+    const confirm = useConfirm();
     const [quesIndexState, setQuestIndexState] = useState(getCurrentIndexQuestion());
     const [isFetching, setIsFetching] = useState(false);
     const [questionsData, setQuestionsData] = useState([]);
@@ -63,13 +67,8 @@ const Quiz: React.FC = () => {
     }, []);
 
     // Functions
-    const handleChangeQuestionIndex = (e) => {
-        const text = e.target.innerText;
-        if (!text) return;
-        const index = Number(text);
-        if (index) {
-            setIndexQuesCombo(index - 1);
-        }
+    const handleChangeQuestionIndex = (index) => {
+        setIndexQuesCombo(index);
     };
     const setIndexQuesCombo = (index) => {
         setIndexQuestion(index);
@@ -92,11 +91,15 @@ const Quiz: React.FC = () => {
     };
     const handleSubmit = () => {
         if (isEligibleForSubmit(questionsData.length)) {
-            const confirmSubmit = confirm('Are you sure to summit?');
-            if (confirmSubmit) {
-                // clearAnswers();
+            confirm({
+                confirmationText: 'Yes',
+                cancellationText: 'NO',
+                title: 'Are you sure to submit?',
+            }).then(() => {
                 setIsRedirectToResultPage(true);
-            }
+            });
+
+            return false;
         } else {
             showSnackbar('Please select the answer to all questions', 'error');
         }
@@ -105,7 +108,10 @@ const Quiz: React.FC = () => {
     // Render
     const quizBoxTitle = questionsData?.length > 0 ? `Question ${quesIndexState + 1} of ${questionsData.length}` : '';
     const renderContent = isFetching ? (
-        <h1>Getting questions.....</h1>
+        <div className={classes.center}>
+            <CircularProgress size={80} color="secondary" />
+            <h1>Getting questions.....</h1>
+        </div>
     ) : (
         <DisplayQuestion
             title={quizBoxTitle}
@@ -114,24 +120,28 @@ const Quiz: React.FC = () => {
             id={questionsData[quesIndexState]?.id || null}
         />
     );
+
     const questIds = questionsData.map((x) => x.id);
     const answerIds = getAnswerIndexes();
+    const processBarValue = (answerIds.length / questIds.length) * 100;
+    const processBar = <LinearProgress variant="determinate" value={processBarValue} />;
     for (let index = 0; index < questIds.length; index++) {
         const answered = answerIds.includes(questIds[index].toString());
         buttons.push(
             <Grid key={index} item>
                 <Button
                     variant="contained"
-                    onClick={handleChangeQuestionIndex}
+                    onClick={() => handleChangeQuestionIndex(index)}
                     color={answered ? 'primary' : 'default'}
                     disabled={isFetching || index === quesIndexState}
-                    // endIcon={answered ? <CheckIcon /> : null}
+                    endIcon={answered ? <CheckIcon /> : null}
                 >
                     {index + 1}
                 </Button>
             </Grid>,
         );
     }
+
     if (isRedirectToResultPage) {
         return <Redirect to={LINK_URL.result} />;
     }
@@ -179,7 +189,8 @@ const Quiz: React.FC = () => {
                 <Grid container spacing={2} className={classes.gridCenter}>
                     {buttons}
                 </Grid>
-                <hr />
+                <br />
+                {processBar}
             </div>
             {/* </div> */}
         </>
