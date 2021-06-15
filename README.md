@@ -1,7 +1,3 @@
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Online demo
 Link: https://react-fc-14.vercel.app/
 More detail: https://react-fc-14.vercel.app/about
@@ -45,5 +41,8 @@ In the project directory, you can run:
 ### `yarn start`
 ### `yarn format`
 ### `yarn build`
-
-Made by 1510289
+## Author
+Name: Vuong nguyen
+Phone: 
+Mail: nguyenvanvuong972@gmail.com  
+Skype: https://join.skype.com/invite/jLg46TvJiinh
