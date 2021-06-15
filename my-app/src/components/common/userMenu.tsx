@@ -50,7 +50,7 @@ export const UserMenu: React.FC = () => {
             <Menu id="simple-menu" anchorEl={anchorEl} keepMounted open={Boolean(anchorEl)} onClose={handleClose}>
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>Setting</MenuItem>
-                <MenuItem onClick={test403Page}>test 403 page</MenuItem>
+                <MenuItem onClick={test403Page}>Test 403 page</MenuItem>
                 <MenuItem onClick={deleteAnswers}>Delete answers</MenuItem>
 
                 <MenuItem onClick={handleLogout}>Logout</MenuItem>

@@ -15,16 +15,21 @@ interface DisplayQuestion {
     question: string;
     choices: Array<string>;
     id: number;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    callBackFunc?: any;
 }
 
 const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
     const classes = myStyle();
-    const { id, title, question, choices } = props;
+    const { id, title, question, choices, callBackFunc } = props;
     const [answerState, setAnswerState] = useState(getUserAnswers());
 
     const handleChangeOption = (event) => {
         const value = (event.target as HTMLInputElement).value;
         setAnswerState(setUserAnswerRadio(id, value));
+        if (!answerState[id]) {
+            callBackFunc();
+        }
     };
     if (choices.length === 0) {
         return (
@@ -51,10 +56,6 @@ const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
         <div>
             <div>
                 <span className={classes.questionText}>{title}</span>
-                {/* <div className="timer">
-                    <div className="time_left_txt">Time Off</div>
-                    <div className="timer_sec">00</div>
-                </div> */}
             </div>
             <hr />
             <FormControl component="fieldset" className={classes.formControl}>

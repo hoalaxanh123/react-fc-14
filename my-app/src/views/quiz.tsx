@@ -35,18 +35,21 @@ const Quiz: React.FC = () => {
     const classes = myStyle();
     const buttons = [];
     const confirm = useConfirm();
+    const { showSnackbar } = useSnackBar();
+
     const [quesIndexState, setQuestIndexState] = useState(getCurrentIndexQuestion());
     const [isFetching, setIsFetching] = useState(false);
     const [isReady, setIsReady] = useState(false);
     const [questionsData, setQuestionsData] = useState([]);
     const [isRedirectToResultPage, setIsRedirectToResultPage] = useState(false);
-    const { showSnackbar } = useSnackBar();
+    const [refresh, setRefresh] = useState(false);
 
     const isLastQuestion = quesIndexState + 1 === questionsData.length;
     const commonCondition = questionsData.length === 0 || isFetching;
     const isDisablePreviousButton = commonCondition || quesIndexState === 0;
     const isDisableNextButton = commonCondition || isLastQuestion;
     const isDisableSubmitButton = commonCondition;
+    const canSubmit = isEligibleForSubmit(questionsData.length);
 
     // Hooks
     useEffect(() => {
@@ -93,7 +96,7 @@ const Quiz: React.FC = () => {
         }
     };
     const handleSubmit = () => {
-        if (isEligibleForSubmit(questionsData.length)) {
+        if (canSubmit) {
             confirm({
                 confirmationText: 'Yes',
                 cancellationText: 'NO',
@@ -107,6 +110,9 @@ const Quiz: React.FC = () => {
             showSnackbar('Please select the answer to all questions', 'error');
         }
     };
+    const changeAnswerValue = () => {
+        setRefresh(!refresh);
+    };
 
     // Render
     const quizBoxTitle = questionsData?.length > 0 ? `Question ${quesIndexState + 1} of ${questionsData.length}` : '';
@@ -118,6 +124,7 @@ const Quiz: React.FC = () => {
             question={questionsData[quesIndexState]?.question}
             choices={questionsData[quesIndexState]?.choices || []}
             id={questionsData[quesIndexState]?.id || null}
+            callBackFunc={changeAnswerValue}
         />
     );
 
@@ -125,6 +132,8 @@ const Quiz: React.FC = () => {
     const answerIds = getAnswerIndexes();
     const processBarValue = (answerIds.length / questIds.length) * 100;
     const processBar = <LinearProgress variant="determinate" value={processBarValue} />;
+
+    // Render nav buttons
     for (let index = 0; index < questIds.length; index++) {
         const answered = answerIds.includes(questIds[index].toString());
         buttons.push(
@@ -141,6 +150,20 @@ const Quiz: React.FC = () => {
             </Grid>,
         );
     }
+    buttons.push(
+        <Grid key={'button_submit'} item>
+            <Button
+                variant="contained"
+                style={{ backgroundColor: canSubmit ? 'rgb(5 191 102)' : '#1da1f2', color: 'white' }}
+                className={classes.buttonNav}
+                disabled={isDisableSubmitButton}
+                endIcon={<PublishIcon />}
+                onClick={() => handleNavButton(BTN_SUBMIT_LABEL)}
+            >
+                {BTN_SUBMIT_LABEL}
+            </Button>
+        </Grid>,
+    );
 
     if (isRedirectToResultPage) {
         return <Redirect to={LINK_URL.result} />;
@@ -201,24 +224,14 @@ const Quiz: React.FC = () => {
                         {BTN_NEXT_LABEL}
                     </Button>
                 </Grid>
-                <Grid container spacing={2} className={classes.gridCenter}>
+                <hr />
+                <Grid container spacing={1} className={classes.gridCenter}>
                     {buttons}
                 </Grid>
                 <br />
                 {processBar}
                 <br />
-                <div style={{ width: '100%', textAlign: 'center' }}>
-                    <Button
-                        variant="contained"
-                        style={{ backgroundColor: '#1da1f2', color: 'white' }}
-                        className={classes.buttonNav}
-                        disabled={isDisableSubmitButton}
-                        endIcon={<PublishIcon />}
-                        onClick={() => handleNavButton(BTN_SUBMIT_LABEL)}
-                    >
-                        {BTN_SUBMIT_LABEL}
-                    </Button>
-                </div>
+                <div style={{ width: '100%', textAlign: 'center' }}></div>
             </div>
             {/* </div> */}
         </>

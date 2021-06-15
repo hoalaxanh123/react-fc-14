@@ -103,3 +103,10 @@ export const preparePayloadForCheckAnswers = (): any => {
     result = { listAnswer: listAnswer };
     return result;
 };
+export const randomSortArr = (inputArr: Array<any>): Array<any> => {
+    try {
+        return inputArr.sort(() => Math.random() - 0.5);
+    } catch (err) {
+        return inputArr;
+    }
+};
