@@ -153,11 +153,11 @@ export const myStyle = makeStyles((theme) => ({
         background: 'aliceblue',
         border: '1px solid #84c5fe',
         borderRadius: '5px',
-        padding: '5px 15px',
+        padding: '5px 10px',
         fontSize: '17px',
         margin: '0 0 15px 0 !important',
         cursor: 'pointer',
-        transition: 'all 0.3s ease',
+        transition: 'all 0.5s ease',
         display: 'flex',
         alignItems: 'center',
         wordBreak: 'break-all',
@@ -166,8 +166,29 @@ export const myStyle = makeStyles((theme) => ({
             background: '#cce5ff',
             border: '1px solid #b8daff',
         },
+        '@media (max-width: 1500px)': {
+            fontSize: '12px',
+            padding: '2.5px 10px',
+            margin: '0 0 12px 0 !important',
+        },
     },
     quizBox: {
+        margin: '8% auto',
+        padding: '30px',
+        width: '70%',
+        boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
+        zIndex: 9999999,
+        background: '#fff',
+        '@media (max-width: 1500px)': {
+            margin: '1% auto',
+            width: '68% !important',
+        },
+        '@media (max-width: 900px)': {
+            margin: '8% auto',
+            width: '100% !important',
+        },
+    },
+    quizBoxReady: {
         margin: '8% auto',
         padding: '30px',
         width: '70%',
@@ -178,16 +199,37 @@ export const myStyle = makeStyles((theme) => ({
             width: '100% !important',
         },
     },
-    questionText: {
+    questionTitle: {
         fontSize: '25px',
         fontWeight: 600,
-        maxWidth: '10px',
+        textShadow: '1px 1px 1px grey',
         wordBreak: 'break-all',
+        '@media (max-width: 1500px)': {
+            fontSize: '22px',
+        },
+    },
+    questionText: {
+        fontSize: '22px',
+        padding: '0 0 15px 0',
+        fontWeight: 440,
+        wordBreak: 'break-all',
+        '@media (max-width: 1500px)': {
+            fontSize: '19px',
+        },
+        '@media (max-width: 900px)': {
+            fontSize: '18px',
+        },
     },
     buttonNav: {
         transform: 'scale(0.95)',
         transition: 'all 0.3s ease',
     },
+    buttonNavIndex: {
+        // fontSize: '3px !important',
+        // width: '3px !important',
+        padding: '20px',
+    },
+
     center: {
         margin: '0 auto',
         textAlign: 'center',
@@ -197,8 +239,10 @@ export const myStyle = makeStyles((theme) => ({
     },
     gridBetween: {
         justifyContent: 'space-between',
-        marginTop: '-40px !important',
-        paddingBottom: '20px',
+        padding: '10px 5px ',
+    },
+    progressBar: {
+        padding: '10px 0',
     },
     reportBox: {
         textAlign: 'left',

@@ -11,7 +11,7 @@ const GetReadyQuest: React.FC<LoadingQuestProps> = (props: LoadingQuestProps) =>
     const classes = myStyle();
     return (
         <>
-            <div className={classes.quizBox}>
+            <div className={classes.quizBoxReady}>
                 <h2 className={classes.titleRule}>
                     Some Rules of this Quiz&nbsp; <GavelIcon />
                 </h2>

@@ -54,12 +54,10 @@ const DisplayQuestion: React.FC<DisplayQuestion> = (props: DisplayQuestion) => {
 
     return (
         <div>
-            <div>
-                <span className={classes.questionText}>{title}</span>
-            </div>
+            <span className={classes.questionTitle}>{title}</span>
             <hr />
             <FormControl component="fieldset" className={classes.formControl}>
-                <h2>{question}</h2>
+                <span className={classes.questionText}>{question}</span>
                 <RadioGroup value={answerState[id] || null} onChange={handleChangeOption}>
                     {renderChoices}
                 </RadioGroup>

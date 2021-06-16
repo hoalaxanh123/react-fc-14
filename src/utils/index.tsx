@@ -83,11 +83,19 @@ export const clearAllQuesSession = (): void => {
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export const saveQuestion = (questions: any): void => {
-    localStorage.setItem(QUESTIONS, JSON.stringify(questions));
+    try {
+        localStorage.setItem(QUESTIONS, JSON.stringify(questions));
+    } catch (error) {
+        saveQuestion({});
+    }
 };
 
 export const getQuestions = (): any => {
-    return JSON.parse(localStorage.getItem(QUESTIONS)) || [];
+    try {
+        return JSON.parse(localStorage.getItem(QUESTIONS)) || [];
+    } catch (error) {
+        saveQuestion({});
+    }
 };
 
 export const preparePayloadForCheckAnswers = (): any => {
