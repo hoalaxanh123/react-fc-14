@@ -1,6 +1,6 @@
-## Online demo
-Link: https://react-fc-14.vercel.app/ \
-More detail: https://react-fc-14.vercel.app/about
+## Production
+Link: https://react-fc-14-test-server-online.vercel.app/ \
+More detail: https://react-fc-14-test-server-online.vercel.app/about
 
 ## NOTE
 - Support responsive.
