@@ -18,7 +18,6 @@ const About: React.FC = () => {
                 <li>Automatically format code when committing code.</li>
                 <li>User can continue their in-progress test..</li>
                 <li>If the user logs in with another account, the old progress session will be deleted.</li>
-                <li>Users can manually delete their progress session (dropdown menu).</li>
                 <li>Each page has its own title.</li>
                 <li>
                     [1]When the user is not logged and wants to access some page that requires authentication, it will
@@ -26,6 +25,7 @@ const About: React.FC = () => {
                 </li>
                 <li>[2]After the user logs in, the system will redirect to the page the user wants to visit.</li>
                 <li>Currently, the user will go to About page after login by default.</li>
+                <li>[DEBUG]Users can manually delete their progress session (dropdown menu).</li>
             </ul>
             <h2>REQUIREMENTS </h2>
             <ul className={classes.listRequirement}>

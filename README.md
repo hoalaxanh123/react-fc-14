@@ -11,8 +11,8 @@ More detail: https://react-fc-14.vercel.app/about
 - Automatically format code when committing code.
 - User can continue their in-progress test..
 - If the user logs in with another account, the old progress session will be deleted.
-- Users can manually delete their progress session (dropdown menu).
 - Each page has its own title.
+- [DEBUG]Users can manually delete their progress session (dropdown menu).
 ## REQUIREMENTS
 - Routing must be satisfied.
 - Logged in user can not access login page.

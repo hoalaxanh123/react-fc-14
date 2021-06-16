@@ -8,17 +8,25 @@ import { useHistory } from 'react-router';
 import { clearAnswers } from '../../utils';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
 
+import PersonIcon from '@material-ui/icons/Person';
+import SettingsIcon from '@material-ui/icons/Settings';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import AdbIcon from '@material-ui/icons/Adb';
+
+import useSnackBar from '../../hook';
+
 interface UserMenuProps {
     isUsingMobile?: boolean;
 }
 
 export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
-    console.log('props :>> ', props);
     const [anchorEl, setAnchorEl] = React.useState(null);
     const { isUsingMobile } = props;
-    console.log('isUsingMobile :>> ', isUsingMobile);
     const classes = myStyle();
     const history = useHistory();
+    const { showSnackbar } = useSnackBar();
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const handleClick = (event: any) => {
@@ -45,6 +53,10 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
     const clearCache = () => {
         localStorage.clear();
         window.location.reload();
+    };
+    const notImplementYet = () => {
+        showSnackbar("Oops, it's still under construction, please use another option !", 'error');
+        handleClose();
     };
     const renderMenuController = () => {
         if (!isUsingMobile) {
@@ -85,13 +97,35 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
                 open={Boolean(anchorEl)}
                 onClose={handleClose}
             >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Setting</MenuItem>
-                <MenuItem onClick={test403Page}>Test 403 page</MenuItem>
-                <MenuItem onClick={deleteAnswers}>Delete answers</MenuItem>
-                <MenuItem onClick={clearCache}>Clear cache</MenuItem>
+                <MenuItem onClick={notImplementYet}>
+                    <PersonIcon fontSize="small" />
+                    &nbsp;&nbsp;Profile
+                </MenuItem>
 
-                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                <MenuItem onClick={notImplementYet}>
+                    <SettingsIcon fontSize="small" />
+                    &nbsp;&nbsp;Setting
+                </MenuItem>
+
+                <MenuItem onClick={deleteAnswers}>
+                    <DeleteOutlineIcon fontSize="small" />
+                    &nbsp;&nbsp;Clear answers
+                </MenuItem>
+
+                <MenuItem onClick={clearCache}>
+                    <DeleteForeverIcon fontSize="small" />
+                    &nbsp;&nbsp;Clear cache
+                </MenuItem>
+
+                <MenuItem onClick={test403Page}>
+                    <AdbIcon fontSize="small" />
+                    &nbsp;&nbsp;Test 403 page
+                </MenuItem>
+
+                <MenuItem onClick={handleLogout}>
+                    <ExitToAppIcon fontSize="small" />
+                    &nbsp;&nbsp;Logout
+                </MenuItem>
             </Menu>
         </>
     );
