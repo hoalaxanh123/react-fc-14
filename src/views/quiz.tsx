@@ -32,7 +32,7 @@ const Quiz: React.FC = () => {
 
     const [questIndexState, setQuestIndexState] = useState(getCurrentIndexQuestion());
     const [isFetching, setIsFetching] = useState(false);
-    const [isReady, setIsReady] = useState(false);
+    const [isUserReady, setIsUserReady] = useState(false);
     const [questionsData, setQuestionsData] = useState([]);
     const [isRedirectToResultPage, setIsRedirectToResultPage] = useState(false);
     const [refresh, setRefresh] = useState(false);
@@ -62,7 +62,6 @@ const Quiz: React.FC = () => {
     }, [reloadQuestion]);
 
     // Functions
-
     const setIndexQuesCombo = (index) => {
         setIndexQuestion(index);
         setQuestIndexState(index);
@@ -99,7 +98,7 @@ const Quiz: React.FC = () => {
                 title: 'You have an unfinished session, do you want to continue??',
             })
                 .then(() => {
-                    setIsReady(true);
+                    setIsUserReady(true);
                 })
                 .catch(() => {
                     clearAllQuesSession();
@@ -107,22 +106,18 @@ const Quiz: React.FC = () => {
                     setIndexQuesCombo(getCurrentIndexQuestion());
                 })
                 .finally(() => {
-                    setIsReady(true);
+                    setIsUserReady(true);
                 });
         } else {
-            setIsReady(true);
+            setIsUserReady(true);
         }
     };
 
-    if (!isReady) {
+    if (!isUserReady) {
         return <GetReadyQuest handleClickReadyButton={handleClickReadyButton} />;
     }
     if (isFetching) {
-        return (
-            <div className={classes.quizBox}>
-                <LoadingQuest />
-            </div>
-        );
+        return <LoadingQuest />;
     }
     if (isRedirectToResultPage) {
         return <Redirect to={LINK_URL.result} />;
