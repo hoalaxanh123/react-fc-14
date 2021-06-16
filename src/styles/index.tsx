@@ -247,6 +247,10 @@ export const myStyle = makeStyles((theme) => ({
     reportBox: {
         textAlign: 'left',
     },
+    reportDate: {
+        fontStyle: 'italic',
+        fontSize: '13px',
+    },
     questionBlock: {
         marginTop: '-15px',
     },

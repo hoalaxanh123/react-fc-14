@@ -54,3 +54,5 @@ export const USERNAME_QUESTION = 'usr_ques';
 export const BTN_PREVIOUS_LABEL = 'Prev';
 export const BTN_NEXT_LABEL = 'Next';
 export const BTN_SUBMIT_LABEL = 'Submit';
+
+export const RESULT_DATA = 'result_data';

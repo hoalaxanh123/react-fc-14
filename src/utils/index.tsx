@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { ANSWERS, QUESTIONS, SELECTED_INDEX_QUESTION } from '../constants';
+import { ANSWERS, QUESTIONS, RESULT_DATA, SELECTED_INDEX_QUESTION } from '../constants';
 
 export const getCurrentIndexQuestion = (): number => {
     const index = localStorage.getItem(SELECTED_INDEX_QUESTION);
@@ -74,11 +74,7 @@ export const getAnswerIndexes = (): Array<number> => {
 export const clearAnswers = (): void => {
     localStorage.removeItem(SELECTED_INDEX_QUESTION);
     localStorage.removeItem(ANSWERS);
-};
-export const clearAllQuesSession = (): void => {
-    clearAnswers();
     localStorage.removeItem(QUESTIONS);
-    localStorage.removeItem(SELECTED_INDEX_QUESTION);
 };
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
@@ -117,4 +113,24 @@ export const randomSortArr = (inputArr: Array<any>): Array<any> => {
     } catch (err) {
         return inputArr;
     }
+};
+
+export const saveReportData = (): any => {
+    const answers = getUserAnswers();
+    const questions = getQuestions();
+    const answersIndexes = getAnswerIndexes();
+    const date = new Date().toLocaleString();
+    localStorage.setItem(
+        RESULT_DATA,
+        JSON.stringify({
+            answers: answers,
+            questions: questions,
+            answersIndexes: answersIndexes,
+            date: date,
+        }),
+    );
+};
+
+export const getReportData = (): any => {
+    return JSON.parse(localStorage.getItem(RESULT_DATA)) || null;
 };

@@ -7,11 +7,12 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import {
-    clearAllQuesSession,
+    clearAnswers,
     getAnswerIndexes,
     getCurrentIndexQuestion,
     isEligibleForSubmit,
     saveQuestion,
+    saveReportData,
     setIndexQuestion,
 } from '../utils';
 import { API_URLS, LINK_URL } from '../constants';
@@ -74,6 +75,8 @@ const Quiz: React.FC = () => {
                 cancellationText: 'NO',
                 title: 'Are you sure to submit?',
             }).then(() => {
+                saveReportData();
+                clearAnswers();
                 setIsRedirectToResultPage(true);
             });
 
@@ -101,7 +104,7 @@ const Quiz: React.FC = () => {
                     setIsUserReady(true);
                 })
                 .catch(() => {
-                    clearAllQuesSession();
+                    clearAnswers();
                     setReloadQuestion(!reloadQuestion);
                     setIndexQuesCombo(getCurrentIndexQuestion());
                 })

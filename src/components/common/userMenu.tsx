@@ -3,7 +3,7 @@ import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import { myStyle } from '../../styles';
-import { LINK_URL, LOGGED, ROLE, USERNAME } from '../../constants';
+import { LINK_URL, LOGGED, RESULT_DATA, ROLE, USERNAME } from '../../constants';
 import { useHistory } from 'react-router';
 import { clearAnswers } from '../../utils';
 import AssignmentIndIcon from '@material-ui/icons/AssignmentInd';
@@ -14,6 +14,8 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 import AdbIcon from '@material-ui/icons/Adb';
+import Divider from '@material-ui/core/Divider';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import useSnackBar from '../../hook';
 
@@ -39,9 +41,18 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
     const test403Page = () => {
         history.replace(LINK_URL.test_403);
     };
+    const clearResult = () => {
+        localStorage.removeItem(RESULT_DATA);
+        if (window.location.pathname === LINK_URL.result) {
+            window.location.reload();
+        }
+        handleClose();
+    };
     const deleteAnswers = () => {
         clearAnswers();
-        window.location.reload();
+        if (window.location.pathname === LINK_URL.quiz) {
+            window.location.reload();
+        }
     };
     const handleLogout = () => {
         localStorage.removeItem(LOGGED);
@@ -106,10 +117,16 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
                     <SettingsIcon fontSize="small" />
                     &nbsp;&nbsp;Setting
                 </MenuItem>
+                <Divider />
 
                 <MenuItem onClick={deleteAnswers}>
                     <DeleteOutlineIcon fontSize="small" />
                     &nbsp;&nbsp;Clear answers
+                </MenuItem>
+
+                <MenuItem onClick={clearResult}>
+                    <DeleteIcon fontSize="small" />
+                    &nbsp;&nbsp;Clear result
                 </MenuItem>
 
                 <MenuItem onClick={clearCache}>
@@ -121,6 +138,7 @@ export const UserMenu: React.FC<UserMenuProps> = (props: UserMenuProps) => {
                     <AdbIcon fontSize="small" />
                     &nbsp;&nbsp;Test 403 page
                 </MenuItem>
+                <Divider />
 
                 <MenuItem onClick={handleLogout}>
                     <ExitToAppIcon fontSize="small" />

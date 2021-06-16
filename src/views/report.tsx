@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import withMyTheme from '../HOC';
 import { API_URLS, LINK_URL, PAGE_TITLES } from '../constants';
-import { getAnswerIndexes, getQuestions, getUserAnswers, preparePayloadForCheckAnswers } from '../utils';
+import { getReportData, preparePayloadForCheckAnswers } from '../utils';
 import { myStyle } from '../styles';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
@@ -22,9 +22,18 @@ const ResultPage: React.FC = () => {
 
     // ==========Variables==========
     const classes = myStyle();
-    const questions = getQuestions();
-    const answersIndexes = getAnswerIndexes();
-    const answers = getUserAnswers();
+    let questions = [];
+    let answersIndexes = [];
+    let answers = [];
+    let date = '';
+
+    const reportData = getReportData();
+    if (reportData) {
+        date = reportData.date;
+        questions = reportData.questions;
+        answersIndexes = reportData.answersIndexes;
+        answers = reportData.answersIndexes;
+    }
 
     const inValidData =
         (questions.length === 0 && answersIndexes.length === 0) || questions.length !== answersIndexes.length;
@@ -119,6 +128,7 @@ const ResultPage: React.FC = () => {
                 Congratulation, you have finished the test with result {passQuestion}/{questions.length} correct
                 answers!!
             </h2>
+            <p className={classes.reportDate}>Date: {date}</p>
             {renderQuest}
         </div>
     );
