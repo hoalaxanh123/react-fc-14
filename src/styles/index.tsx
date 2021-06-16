@@ -155,7 +155,7 @@ export const myStyle = makeStyles((theme) => ({
         borderRadius: '5px',
         padding: '5px 15px',
         fontSize: '17px',
-        marginBottom: '15px',
+        margin: '0 0 15px 0 !important',
         cursor: 'pointer',
         transition: 'all 0.3s ease',
         display: 'flex',
@@ -165,9 +165,6 @@ export const myStyle = makeStyles((theme) => ({
             color: '#004085',
             background: '#cce5ff',
             border: '1px solid #b8daff',
-        },
-        '@media (max-width: 900px)': {
-            margin: '0 0 15px 0 !important',
         },
     },
     quizBox: {
