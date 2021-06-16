@@ -2,13 +2,12 @@ import React from 'react';
 import withMyTheme from '../HOC';
 import { PAGE_TITLES } from '../constants';
 import { myStyle } from '../styles';
-import { Container } from '@material-ui/core';
 
 const About: React.FC = () => {
     const classes = myStyle();
     return (
-        <Container maxWidth="lg" className={classes.center}>
-            <h2>NOTE </h2>
+        <div className={classes.aboutPage}>
+            <h2>FEATURES</h2>
             <ul className={classes.listRequirement}>
                 <li>Support responsive.</li>
                 <li>There is effect on hover and active menu.</li>
@@ -16,18 +15,23 @@ const About: React.FC = () => {
                 <li>Account test can&apos;t access into the page management (/management), it will raise error 403.</li>
                 <li>Users can print their results.</li>
                 <li>Automatically format code when committing code.</li>
-                <li>User can continue their in-progress test..</li>
+                <li>User can continue their in-progress test.</li>
                 <li>If the user logs in with another account, the old progress session will be deleted.</li>
                 <li>Each page has its own title.</li>
+                <li>There is a User menu for authenticated users at the top right of the screen.</li>
                 <li>
                     [1]When the user is not logged and wants to access some page that requires authentication, it will
                     be redirected to the login page.
                 </li>
-                <li>[2]After the user logs in, the system will redirect to the page the user wants to visit.</li>
-                <li>Currently, the user will go to About page after login by default.</li>
+                <li>
+                    [2]After the user logs in, the system will redirect to the page the user wants to visit. Currently,
+                    the user will go to About page after login by default.
+                </li>
+
                 <li>[DEBUG]Users can manually delete their progress session (dropdown menu).</li>
+                <li>If there are any problems, clearing the browser cache may helpful (dropdown menu).</li>
             </ul>
-            <h2>REQUIREMENTS </h2>
+            <h2>REQUIREMENTS</h2>
             <ul className={classes.listRequirement}>
                 <li>Routing must be satisfied.</li>
                 <li>Logged in user can not access login page.</li>
@@ -50,7 +54,7 @@ const About: React.FC = () => {
                 <li>User can check back their answers and result after all (their answer vs the correct one).</li>
                 <li>User may continue their in-progress test.</li>
             </ul>
-        </Container>
+        </div>
     );
 };
 

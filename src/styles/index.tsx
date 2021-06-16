@@ -373,6 +373,15 @@ export const myStyle = makeStyles((theme) => ({
             },
         },
     },
+    aboutPage: {
+        margin: '0 auto',
+        textAlign: 'center',
+        '&>ul': {
+            '@media (max-width: 900px)': {
+                marginLeft: '-10px',
+            },
+        },
+    },
 }));
 
 export const modalStyle = makeStyles((theme) => ({
