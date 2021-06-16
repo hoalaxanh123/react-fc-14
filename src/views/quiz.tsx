@@ -32,7 +32,7 @@ const Quiz: React.FC = () => {
 
     const [questIndexState, setQuestIndexState] = useState(getCurrentIndexQuestion());
     const [isFetching, setIsFetching] = useState(false);
-    const [isReady, setIsReady] = useState(true);
+    const [isReady, setIsReady] = useState(false);
     const [questionsData, setQuestionsData] = useState([]);
     const [isRedirectToResultPage, setIsRedirectToResultPage] = useState(false);
     const [refresh, setRefresh] = useState(false);
