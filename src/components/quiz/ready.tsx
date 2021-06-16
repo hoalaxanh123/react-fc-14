@@ -24,9 +24,12 @@ const GetReadyQuest: React.FC<LoadingQuestProps> = (props: LoadingQuestProps) =>
                     <li>That all, have fun !</li>
                 </ul>
                 <hr />
-                <Button variant="contained" color="primary" onClick={() => props.handleClickReadyButton()}>
-                    READY, LET GO !!!
-                </Button>
+
+                <div className={classes.buttonGotoQuiz}>
+                    <Button variant="contained" color="primary" onClick={() => props.handleClickReadyButton()}>
+                        READY, LET GO !!!
+                    </Button>
+                </div>
             </div>
         </>
     );

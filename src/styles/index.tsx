@@ -166,6 +166,9 @@ export const myStyle = makeStyles((theme) => ({
             background: '#cce5ff',
             border: '1px solid #b8daff',
         },
+        '@media (max-width: 900px)': {
+            margin: '0 0 15px 0 !important',
+        },
     },
     quizBox: {
         margin: '8% auto',
@@ -174,6 +177,9 @@ export const myStyle = makeStyles((theme) => ({
         boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
         zIndex: 9999999,
         background: '#fff',
+        '@media (max-width: 900px)': {
+            width: '100% !important',
+        },
     },
     questionText: {
         fontSize: '25px',
@@ -205,6 +211,16 @@ export const myStyle = makeStyles((theme) => ({
     },
     titleRule: {
         marginTop: '-10px',
+        '@media (max-width: 900px)': {
+            fontSize: '18px',
+            textAlign: 'center',
+        },
+    },
+    buttonGotoQuiz: {
+        '@media (max-width: 900px)': {
+            textAlign: 'center',
+            margin: '0 auto',
+        },
     },
     answerTextPass: {
         marginTop: '-10px',
@@ -219,6 +235,7 @@ export const myStyle = makeStyles((theme) => ({
     listRule: {
         '&>li': {
             listStyleType: 'circle',
+            '@media (max-width: 900px)': { marginLeft: '-15px' },
         },
     },
     overlay: {
@@ -296,6 +313,20 @@ export const myStyle = makeStyles((theme) => ({
     drawerContainer: {
         padding: '20px 20px',
         marginLeft: '-40px',
+    },
+    reportHaveNoRecord: {
+        margin: '0 auto',
+        textAlign: 'center',
+        padding: '30px',
+        width: '100%',
+        '@media (max-width: 900px)': {
+            '&>img': {
+                width: '65%',
+            },
+            '&>h1': {
+                fontSize: '15px',
+            },
+        },
     },
 }));
 
