@@ -94,6 +94,7 @@ export const MyResponsiveMenu: React.FC = () => {
     const getMenuForMobileView = () => {
         return (
             <div className={classes.menuResponsiveMobileContainer}>
+                <h3>menu</h3>
                 <ul className={classes.menuResponsiveMobile}>
                     <li>
                         <CustomNavLink to={LINK_URL.homepage} label={'Home'} activeOnlyWhenExact={true} />

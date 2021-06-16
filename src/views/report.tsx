@@ -59,7 +59,7 @@ const ResultPage: React.FC = () => {
     // ==========Render==========
     if (inValidData) {
         return (
-            <div className={classes.center} style={{ padding: '50px' }}>
+            <div className={classes.center}>
                 <img src="low_battery.png" />
                 <h1>You don&apos;t have any records, take your challenge first!</h1>
                 <Link to={LINK_URL.quiz} className={classes.buttonLink}>
