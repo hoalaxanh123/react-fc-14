@@ -95,7 +95,7 @@ export const getQuestions = (): any => {
 };
 
 export const preparePayloadForCheckAnswers = (): any => {
-    const answers = getUserAnswers();
+    const answers = getReportData()?.answers || [];
     let result = {};
     const listAnswer = [];
     Object.keys(answers).forEach((key) => {

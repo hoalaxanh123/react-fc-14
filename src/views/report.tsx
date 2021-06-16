@@ -32,7 +32,7 @@ const ResultPage: React.FC = () => {
         date = reportData.date;
         questions = reportData.questions;
         answersIndexes = reportData.answersIndexes;
-        answers = reportData.answersIndexes;
+        answers = reportData.answers;
     }
 
     const inValidData =
