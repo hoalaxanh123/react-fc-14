@@ -31,7 +31,7 @@ const Login: React.FC = () => {
     const history: any = useHistory();
     const previousURL = history?.location?.state?.from;
 
-    let defaultURL = LINK_URL.homepage;
+    let defaultURL = LINK_URL.about;
 
     if (logged) {
         showSnackbar('Oh! you were here, my friend', 'error');

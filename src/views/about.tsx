@@ -20,6 +20,12 @@ const About: React.FC = () => {
                 <li>If the user logs in with another account, the old progress session will be deleted.</li>
                 <li>Users can manually delete their progress session (dropdown menu).</li>
                 <li>Each page has its own title.</li>
+                <li>
+                    [1]When the user is not logged and wants to access some page that requires authentication, it will
+                    be redirected to the login page.
+                </li>
+                <li>[2]After the user logs in, the system will redirect to the page the user wants to visit.</li>
+                <li>Currently, the user will go to About page after login by default.</li>
             </ul>
             <h2>REQUIREMENTS </h2>
             <ul className={classes.listRequirement}>
